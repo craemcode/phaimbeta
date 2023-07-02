@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Stock;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
+
 
 class StockController extends Controller
 {
@@ -12,7 +14,8 @@ class StockController extends Controller
      */
     public function index()
     {
-        //
+        $stocks = Stock::all();
+       return Inertia::render('Records/Add_Stock');
     }
 
     /**
@@ -20,7 +23,11 @@ class StockController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Records/CreateStock');
+        
+        
+        
+        
     }
 
     /**
@@ -28,7 +35,7 @@ class StockController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StockController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -31,7 +32,8 @@ Route::get('/dashboard', function () {
 
 //middlewares to protect a group of routes
 Route::middleware('auth')->group(function () {
-    
+    Route::get('/stocks/all',[StockController::class, 'index'])->name('stocks.show');
+    Route::get('/stocks/create',[StockController::class, 'create'])->name('stocks.create');
     
     
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
