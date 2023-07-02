@@ -34,6 +34,7 @@ Route::get('/dashboard', function () {
 Route::middleware('auth')->group(function () {
     Route::get('/stocks/all',[StockController::class, 'index'])->name('stocks.show');
     Route::get('/stocks/create',[StockController::class, 'create'])->name('stocks.create');
+    Route::post('/stocks/create/new',[StockController::class, 'store'])->name('stocks.store');
     
     
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

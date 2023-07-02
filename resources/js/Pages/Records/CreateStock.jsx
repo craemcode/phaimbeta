@@ -19,7 +19,7 @@ function CreateStock(props) {
  //submit function 
  function submit(e){
     e.preventDefault()
-    post(route('stock.store'),{
+    post(route('stocks.store'),{
         onSuccess: () => reset('PharmacyName'),
     }
     )
@@ -49,7 +49,7 @@ function CreateStock(props) {
                         id="pharmacy"
                         type="text"
                         name="pharmacy"
-                        value={data.PharmacyName}
+                        //value={data.pharmacy}
                         className="mt-1 block w-full"
                        
                         isFocused={true}
@@ -66,7 +66,7 @@ function CreateStock(props) {
                         id="location"
                         type="text"
                         name="location"
-                        value={data.password}
+                        
                         className="mt-1 block w-full"
                         
                         onChange={(e) => setData('location', e.target.value)}

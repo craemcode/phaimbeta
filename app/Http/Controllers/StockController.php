@@ -35,7 +35,24 @@ class StockController extends Controller
      */
     public function store(Request $request)
     {
+       $request->validate([
+        'pharmacy'=>'required|bail|max:255',
+        'location'=>'required|bail|max:100',
+       ]);
+       $stock = new Stock;
+       $stock->name = $request->pharmacy;
+       $stock->location = $request->location;
+       $stock->save();
+
+       return to_route('dashboard')->with('success','Stock successfully added');
+
         
+
+
+
+
+
+
     }
 
     /**
