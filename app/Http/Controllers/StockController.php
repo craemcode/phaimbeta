@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Stock;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Auth;
 
 
 class StockController extends Controller
@@ -14,8 +15,12 @@ class StockController extends Controller
      */
     public function index()
     {
-        $stocks = Stock::all();
-       return Inertia::render('Records/Add_Stock');
+        $user_id = Auth::id();
+
+        $stocks = Stock::where('user_id', $user_id)->get();
+       
+       
+        return Inertia::render('Dashboard',['stocks'=>$stocks]);
     }
 
     /**
@@ -39,7 +44,12 @@ class StockController extends Controller
         'pharmacy'=>'required|bail|max:255',
         'location'=>'required|bail|max:100',
        ]);
+       //the user who makes the stock owns it
+       $user_id = Auth::id();
+
+
        $stock = new Stock;
+       $stock->user_id = $user_id;
        $stock->name = $request->pharmacy;
        $stock->location = $request->location;
        $stock->save();

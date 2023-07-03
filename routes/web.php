@@ -25,14 +25,12 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+
 
 
 //middlewares to protect a group of routes
 Route::middleware('auth')->group(function () {
-    Route::get('/stocks/all',[StockController::class, 'index'])->name('stocks.show');
+    Route::get('/dashboard',[StockController::class, 'index'])->name('dashboard');
     Route::get('/stocks/create',[StockController::class, 'create'])->name('stocks.create');
     Route::post('/stocks/create/new',[StockController::class, 'store'])->name('stocks.store');
     
