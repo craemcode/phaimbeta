@@ -3,8 +3,10 @@ import { Head, useForm } from "@inertiajs/react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 //import LabeledInput from "@/Components/LabeledInput";
 
+
 export default function Add_Stock(props) {
   
+  //useless
   
     return (
         

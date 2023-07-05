@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class ProductController extends Controller
 {
@@ -12,7 +13,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
@@ -20,7 +21,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Records/CreateProduct');
     }
 
     /**
@@ -28,7 +29,23 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+        'ProuctName'=>'required|bail|max:255',
+        'ProductUnits'=>'required|bail|max:100',
+        'ProductAmount'=>'required|bail|max:100',
+        'ProductBuyingPrice'=>'required|bail|max:100',
+        'ProductSellingPrice'=>'required|bail|max:100',
+       ]);
+
+       $product = new Product;
+       $product->stock_id = $stock_id;//how can i get the stock id if it is not passed in the post request?
+       $product->name = $request->productName;
+       $product->units = $request->productUnits;
+       $product->amount = $request->productAmount;
+       $product->buying_price = $request->productBuyingPrice;
+       $product->selling_price = $request->productSellingPrice;
+       
+
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use App\Models\Stock;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -70,7 +71,12 @@ class StockController extends Controller
      */
     public function show(Stock $stock)
     {
-        //
+        
+        
+        //$_stock = Product::where('stock_id', $stock_id)->get();
+
+
+        return Inertia::render('Records/ProductsDashboard',['stock'=>$stock]);
     }
 
     /**

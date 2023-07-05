@@ -1,4 +1,5 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
+
 import { Head,Link, usePage } from '@inertiajs/react';
 
 export default function Dashboard(props) {
@@ -69,7 +70,7 @@ export default function Dashboard(props) {
                             className="bg-blue-100 rounded-lg mx-auto py-2 px-4 my-2 font-semibold hover:bg-green-100 cursor-pointer"
                             key={id}
                                 >
-                                    <Link href={route('dashboard',id)}>
+                                    <Link href={route('products.show',id)}>
                                         {name} <br></br> {location}
                                     </Link>   
                                 </div>
