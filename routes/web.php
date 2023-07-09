@@ -39,7 +39,7 @@ Route::middleware('auth')->group(function () {
 
     //products controller
     Route::get('stock/{stock}/product/create',[ProductController::class, 'create'])->name('product.create');
-    Route::post('stocks/{stock}/product/create/new',[ProductController::class, 'store'])->name('product.store');
+    Route::post('stocks/product/create/new',[ProductController::class, 'store'])->name('product.store');
     
     
     

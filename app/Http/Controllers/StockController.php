@@ -69,13 +69,13 @@ class StockController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Stock $stock)
+    public function show(Stock $stock, Request $request)
     {
         
         
         //$_stock = Product::where('stock_id', $stock_id)->get();
 
-
+        $request->session()->put('stock_id', $stock->id);
         return Inertia::render('Records/ProductsDashboard',['stock'=>$stock]);
     }
 

@@ -4,26 +4,30 @@ import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
-import { Head, useForm } from "@inertiajs/react";
+import NumberInput from '@/Components/NumberInput';
+import { Head, useForm, usePage } from "@inertiajs/react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
+import ProductLayout from '@/Layouts/ProductLayout';
 //import LabeledInput from "@/Components/LabeledInput";
 
 function CreateProduct(props) {
-  
+    
   //use form hook
   const { data, setData, post, processing, errors, reset } = useForm({
+    /*
     ProductName:'',
     //count homogenously...if you buy capsules, record capsules. can be adapted for larger shops.
     ProductUnit: '',
+    ProductAmount: '',
     ProductBuyingPrice: '',
     ProductSellingPrice: '',
-    ProductAmount: '',
+    */
 });
   
  //submit function 
  function submit(e){
     e.preventDefault()
-    post(route('product.store',stock.id),{
+    post(route('product.store'),{
         onSuccess: () => reset('ProductName'),
     }
     )
@@ -33,19 +37,17 @@ function CreateProduct(props) {
     return (
     <AuthenticatedLayout
     user={props.auth.user}
-    header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Products Dashboard</h2>}
+    header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Products Dashboard: {`${props.stock.name}`}</h2>}
     
     >
-        <Head title="Create Product"/>
-        
-        
-        
+        <Head title={props.stock.name}/>
         
         <div className="min-h-screen flex flex-col items-center pt-6 sm:pt-0 bg-gray-100">
         <div className="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
             
 
             <form onSubmit={submit}>
+               
                 <div>
                     <InputLabel htmlFor="text" value="Product Name : Eg Mara moja - Paracetamol" />
 
@@ -53,7 +55,7 @@ function CreateProduct(props) {
                         id="productName"
                         type="text"
                         name="productName"
-                        //value={data.pharmacy}
+                     
                         className="mt-1 block w-full"
                        
                         isFocused={true}
@@ -79,9 +81,9 @@ function CreateProduct(props) {
                     <InputError message={errors.ProductUnit} className="mt-2" />
                 </div>
                 <div className="mt-4">
-                    <InputLabel htmlFor="text" value="Product Amount (Amount Instock)" />
+                    <InputLabel htmlFor="number" value="Product Amount (Amount Instock)" />
 
-                    <TextInput
+                    <NumberInput
                         id="productAmount"
                         type="number"
                         name="productAmount"
@@ -94,9 +96,9 @@ function CreateProduct(props) {
                     <InputError message={errors.ProductAmount} className="mt-2" />
                 </div>
                 <div className="mt-4">
-                    <InputLabel htmlFor="text" value="Product Buying Price" />
+                    <InputLabel htmlFor="number" value="Product Buying Price" />
 
-                    <TextInput
+                    <NumberInput
                         id="productBuyingPrice"
                         type="number"
                         name="productBuyingPrice"
@@ -106,12 +108,12 @@ function CreateProduct(props) {
                         onChange={(e) => setData('productBuyingPrice', e.target.value)}
                     />
 
-                    <InputError message={errors.ProductAmount} className="mt-2" />
+                    <InputError message={errors.ProductBuyingPrice} className="mt-2" />
                 </div>
                 <div className="mt-4">
-                    <InputLabel htmlFor="text" value="Product Selling Price" />
+                    <InputLabel htmlFor="number" value="Product Selling Price" />
 
-                    <TextInput
+                    <NumberInput
                         id="productSellingPrice"
                         type="number"
                         name="productSellingPrice"
@@ -121,7 +123,7 @@ function CreateProduct(props) {
                         onChange={(e) => setData('productSellingPrice', e.target.value)}
                     />
 
-                    <InputError message={errors.ProductAmount} className="mt-2" />
+                    <InputError message={errors.ProductSellingPrice} className="mt-2" />
                 </div>
                 
 
@@ -133,6 +135,7 @@ function CreateProduct(props) {
             </form>
         </div>
         </div>
+        
     </AuthenticatedLayout>
         
   )

@@ -6,6 +6,7 @@ import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import { Head, useForm } from "@inertiajs/react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
+import ProductLayout from '@/Layouts/ProductLayout';
 //import LabeledInput from "@/Components/LabeledInput";
 
 function CreateStock(props) {
@@ -33,7 +34,7 @@ function CreateStock(props) {
     
     >
         <Head title="Create Stock"/>
-        
+       
         
         
         

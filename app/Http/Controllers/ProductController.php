@@ -3,11 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Stock;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
+
+
 class ProductController extends Controller
-{
+{   
+
+
     /**
      * Display a listing of the resource.
      */
@@ -19,9 +24,12 @@ class ProductController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        return Inertia::render('Records/CreateProduct');
+        $stock_id = $request->session()->get('stock_id');
+        $stock = Stock::where('id',$stock_id)->first();
+        
+        return Inertia::render('Records/CreateProduct',['stock'=>$stock]);
     }
 
     /**
@@ -30,20 +38,26 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-        'ProuctName'=>'required|bail|max:255',
-        'ProductUnits'=>'required|bail|max:100',
-        'ProductAmount'=>'required|bail|max:100',
-        'ProductBuyingPrice'=>'required|bail|max:100',
-        'ProductSellingPrice'=>'required|bail|max:100',
+        'productName'=>'required|bail|max:255',
+        'productUnits'=>'required|bail|max:100',
+        'productAmount'=>'required|bail|max:100',
+        'productBuyingPrice'=>'required|bail|max:100',
+        'productSellingPrice'=>'required|bail|max:100',
        ]);
-
+       
        $product = new Product;
-       $product->stock_id = $stock_id;//how can i get the stock id if it is not passed in the post request?
+       $stock_id = $request->session()->get('stock_id');
+       
+       $product->stock_id = $stock_id;
        $product->name = $request->productName;
        $product->units = $request->productUnits;
        $product->amount = $request->productAmount;
        $product->buying_price = $request->productBuyingPrice;
        $product->selling_price = $request->productSellingPrice;
+
+       $product->save();
+
+       return to_route('products.show',$stock_id)->with('success','Product Successfully added');
        
 
     }
