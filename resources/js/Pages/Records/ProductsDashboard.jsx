@@ -1,12 +1,11 @@
 import React from "react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import ProductLayout from "@/Layouts/ProductLayout";
-import SearchBar from "@/Components/SearchBar";
-import ProductCard from "@/Components/ProductCard";
 import { Head, usePage } from "@inertiajs/react";
+import StockTable from "@/Components/StockTable";
 
 export default function ProductsDashboard(props) {
-    const { stock, flash } = usePage().props;
+    const { stock, flash, products } = usePage().props;
 
     return (
         <AuthenticatedLayout
@@ -21,15 +20,18 @@ export default function ProductsDashboard(props) {
             <Head title={stock.name} />
 
             <ProductLayout stock={stock} flash={flash}>
+            
                 <div className="flex flex-col items-center ">
 
-                    <div className="pb-10">
-                        <SearchBar></SearchBar>
-                    </div>
                     <div className="pt-10">
-                        <ProductCard>
+                        
+                        {
+                    Object.keys(products).length ?
+                        <StockTable products={products} stock_id={stock.id}>
                             
-                        </ProductCard>
+                        </StockTable>:
+                        <p>No products to show</p>
+                        }
                     </div>
                 </div>
             </ProductLayout>

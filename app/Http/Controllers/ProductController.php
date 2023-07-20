@@ -16,9 +16,16 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Stock $stock)
     {
-        
+        $stock_id = $stock->id;
+
+        $products = Product::where('stock_id', $stock_id)->get();
+       
+       
+        return Inertia::render('Records/ProductsDashboard',[
+            'products'=>$products, 
+            'stock'=>$stock->only('id','name')]);
     }
 
     /**
@@ -62,7 +69,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        
     }
 
     /**

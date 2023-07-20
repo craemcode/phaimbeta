@@ -45,29 +45,6 @@ const [showFlash,setShowFlash] = useState(true)
                         Bulk Import (csv)
                     </SidebarNavLink>
 
-                    <h4 className="text-white p-2 border-b border-slate-200 font-semibold">Sell</h4>
-                    <SidebarNavLink
-                    as='button'
-                    href={route('dashboard')}
-                    active={route().current('dashboard')}>
-                        Open POS Terminal
-                    </SidebarNavLink>
-                    
-                    <h4 className="text-white p-2 border-b border-slate-200 font-semibold">Restock</h4>
-                    <SidebarNavLink
-                    as='button'
-                    href={route('dashboard')}
-                    active={route().current('dashboard')}>
-                        Open Restock Form
-                    </SidebarNavLink>
-
-                    <SidebarNavLink 
-                    as='button'
-                    href={route('dashboard')}
-                    active={route().current('dashboard')}>
-                        Inventory Dashboard
-                    </SidebarNavLink>
-
                     <h4 className="text-white p-2 border-b border-slate-200 font-semibold">Reports</h4>
                     <SidebarNavLink 
                     as='button'

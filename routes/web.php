@@ -35,9 +35,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard',[StockController::class, 'index'])->name('dashboard');
     Route::get('/stocks/create',[StockController::class, 'create'])->name('stocks.create');
     Route::post('/stocks/create/new',[StockController::class, 'store'])->name('stocks.store');
-    Route::get('stock/{stock}/product/home',[StockController::class, 'show'])->name('products.show');
+    
 
     //products controller
+    Route::get('stock/{stock}/product/home',[ProductController::class, 'index'])->name('products.show');
     Route::get('stock/{stock}/product/create',[ProductController::class, 'create'])->name('product.create');
     Route::post('product/create/new',[ProductController::class, 'store'])->name('product.store');
     //Route::get('product/restock',[ProductController::class, 'restock'])->name('product.restock');
