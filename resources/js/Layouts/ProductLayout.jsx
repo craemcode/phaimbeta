@@ -12,8 +12,8 @@ const [showFlash,setShowFlash] = useState(true)
     return (
 
 
-        <div className="w-full min-h-screen flex-initial flex grow flex-col md:flex-row">
-            <nav className=" bg-gray-100 hidden md:flex-col md:flex md:w-1/5 sticky top-0 h-screen hover:bg-slate-50 transition-all">
+        <div className="w-full min-h-screen flex-initial flex  flex-col md:flex-row">
+            <nav className=" bg-blue-900 hidden md:flex-col md:flex md:w-1/5 sticky top-0 h-screen hover:bg-blue-900 transition-all">
                 <div className="mt-3 w-full flex justify-center">
                     <Link
                     as='button'
@@ -30,11 +30,11 @@ const [showFlash,setShowFlash] = useState(true)
                 <div className='mt-2  w-full'>
 
 
-                    <h4 className="text-gray-600 p-2 border-b border-slate-200 font-semibold">Add Products</h4>
+                    <h4 className="text-white p-2 border-b border-slate-200 font-semibold">Add Products</h4>
                     <SidebarNavLink
                     as='button'
-                    href={route('product.create',stock.name)}
-                    active={route().current('product.create',{stock:stock.name})}>
+                    href={route('product.create',stock.id)}
+                    active={route().current('product.create',{stock:stock.id})}>
                         Add Single Product
                     </SidebarNavLink>
                     
@@ -45,7 +45,7 @@ const [showFlash,setShowFlash] = useState(true)
                         Bulk Import (csv)
                     </SidebarNavLink>
 
-                    <h4 className="text-gray-600 p-2 border-b border-slate-200 font-semibold">Sell</h4>
+                    <h4 className="text-white p-2 border-b border-slate-200 font-semibold">Sell</h4>
                     <SidebarNavLink
                     as='button'
                     href={route('dashboard')}
@@ -53,7 +53,7 @@ const [showFlash,setShowFlash] = useState(true)
                         Open POS Terminal
                     </SidebarNavLink>
                     
-                    <h4 className="text-gray-600 p-2 border-b border-slate-200 font-semibold">Restock</h4>
+                    <h4 className="text-white p-2 border-b border-slate-200 font-semibold">Restock</h4>
                     <SidebarNavLink
                     as='button'
                     href={route('dashboard')}
@@ -68,7 +68,7 @@ const [showFlash,setShowFlash] = useState(true)
                         Inventory Dashboard
                     </SidebarNavLink>
 
-                    <h4 className="text-gray-600 p-2 border-b border-slate-200 font-semibold">Reports</h4>
+                    <h4 className="text-white p-2 border-b border-slate-200 font-semibold">Reports</h4>
                     <SidebarNavLink 
                     as='button'
                     href={route('dashboard')}
@@ -92,8 +92,11 @@ const [showFlash,setShowFlash] = useState(true)
             
             
             
-            <div className='mx-auto min-h-screen bg-white items-center shadow-sm flex flex-col  justify-center md:content-center content-center p-6 w-full relative md:w-4/5 overflow-x-auto' scroll-region='true' >
-            {
+            <div className="flex flex-col items-stretch justify-center grow pt-5 sm:pt-0 bg-gray-300 " >
+                
+                
+            <div className='bg-gray-300 justify-self-start'>
+                {
                 (flash.message && showFlash) && 
                 <FlashMessage message={flash.message} onClick={() => setShowFlash(false)} />
             }
@@ -101,7 +104,14 @@ const [showFlash,setShowFlash] = useState(true)
                 (flash.error && showFlash) &&
                 <FlashError error={flash.error} onClick={() => setShowFlash(false)}  />
             }
-            {children}
+                </div>
+
+                <div className='bg-gray-400 grow flex flex-col justify-center max-h-128'>
+                
+                {children}
+                </div>
+            
+            
                 
             </div>
         </div>

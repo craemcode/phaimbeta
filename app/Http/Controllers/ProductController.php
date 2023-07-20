@@ -24,11 +24,8 @@ class ProductController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Request $request)
+    public function create(Stock $stock)
     {
-        $stock_id = $request->session()->get('stock_id');
-        $stock = Stock::where('id',$stock_id)->first();
-        
         return Inertia::render('Records/CreateProduct',['stock'=>$stock]);
     }
 
@@ -38,26 +35,24 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-        'productName'=>'required|bail|max:255',
-        'productUnits'=>'required|bail|max:100',
-        'productAmount'=>'required|bail|max:100',
-        'productBuyingPrice'=>'required|bail|max:100',
-        'productSellingPrice'=>'required|bail|max:100',
+        'productName'=>'required|bail|string|max:255',
+        'productUnit'=>'required|bail|string|max:100',
+        'productAmount'=>'required|bail|numeric',
+        'productBuyingPrice'=>'required|bail|numeric',
+        'productSellingPrice'=>'required|bail|numeric',
        ]);
        
        $product = new Product;
-       $stock_id = $request->session()->get('stock_id');
-       
-       $product->stock_id = $stock_id;
+       $product->stock_id = $request->stock_id;
        $product->name = $request->productName;
-       $product->units = $request->productUnits;
+       $product->units = $request->productUnit;
        $product->amount = $request->productAmount;
        $product->buying_price = $request->productBuyingPrice;
        $product->selling_price = $request->productSellingPrice;
 
        $product->save();
 
-       return to_route('products.show',$stock_id)->with('success','Product Successfully added');
+       return to_route('products.show',$request->stock_id)->with('success','Product Successfully added');
        
 
     }
@@ -70,6 +65,13 @@ class ProductController extends Controller
         //
     }
 
+    /**
+     * Show the form for restocking the specified product.
+     */
+    public function restock(Product $product)
+    {
+        //
+    }
     /**
      * Show the form for editing the specified resource.
      */

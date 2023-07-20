@@ -13,20 +13,24 @@ import ProductLayout from '@/Layouts/ProductLayout';
 function CreateProduct(props) {
     
   //use form hook
-  const { data, setData, post, processing, errors, reset } = useForm({
-    /*
-    ProductName:'',
+  const { data, setData, post, processing, errors, reset, transform} = useForm({
+    
+    productName:'',
     //count homogenously...if you buy capsules, record capsules. can be adapted for larger shops.
-    ProductUnit: '',
-    ProductAmount: '',
-    ProductBuyingPrice: '',
-    ProductSellingPrice: '',
-    */
+    productAmount: '',
+    productUnit: '',
+    productBuyingPrice: '',
+    productSellingPrice: '',
+    
 });
   
  //submit function 
  function submit(e){
     e.preventDefault()
+    transform(data=>({
+        ...data,
+        stock_id: props.stock.id,
+    }))
     post(route('product.store'),{
         onSuccess: () => reset('ProductName'),
     }
@@ -49,20 +53,21 @@ function CreateProduct(props) {
             <form onSubmit={submit}>
                
                 <div>
-                    <InputLabel htmlFor="text" value="Product Name : Eg Mara moja - Paracetamol" />
+                    <InputLabel htmlFor="text" value="Product Name" />
 
                     <TextInput
                         id="productName"
                         type="text"
                         name="productName"
-                     
+                        value={data.productName}
                         className="mt-1 block w-full"
-                       
+                        placeholder='Eg. Mara moja - Paracetamol'
+                        autoComplete='productname'
                         isFocused={true}
                         onChange={(e) => setData('productName', e.target.value)}
                     />
 
-                    <InputError message={errors.ProductName} className="mt-2" />
+                    <InputError message={errors.productName} className="mt-2" />
                 </div>
 
                 <div className="mt-4">
@@ -72,13 +77,12 @@ function CreateProduct(props) {
                         id="productUnits"
                         type="text"
                         name="productUnits"
-                        
                         className="mt-1 block w-full"
-                        
-                        onChange={(e) => setData('productUnits', e.target.value)}
+                        value={data.productUnit}
+                        onChange={(e) => setData('productUnit', e.target.value)}
                     />
 
-                    <InputError message={errors.ProductUnit} className="mt-2" />
+                    <InputError message={errors.productUnit} className="mt-2" />
                 </div>
                 <div className="mt-4">
                     <InputLabel htmlFor="number" value="Product Amount (Amount Instock)" />
@@ -87,13 +91,13 @@ function CreateProduct(props) {
                         id="productAmount"
                         type="number"
                         name="productAmount"
-                        
+                        value={data.productAmount}
                         className="mt-1 block w-full"
                         
                         onChange={(e) => setData('productAmount', e.target.value)}
                     />
 
-                    <InputError message={errors.ProductAmount} className="mt-2" />
+                    <InputError message={errors.productAmount} className="mt-2" />
                 </div>
                 <div className="mt-4">
                     <InputLabel htmlFor="number" value="Product Buying Price" />
@@ -102,13 +106,13 @@ function CreateProduct(props) {
                         id="productBuyingPrice"
                         type="number"
                         name="productBuyingPrice"
-                        
+                        value={data.productBuyingPrice}
                         className="mt-1 block w-full"
                         
                         onChange={(e) => setData('productBuyingPrice', e.target.value)}
                     />
 
-                    <InputError message={errors.ProductBuyingPrice} className="mt-2" />
+                    <InputError message={errors.productBuyingPrice} className="mt-2" />
                 </div>
                 <div className="mt-4">
                     <InputLabel htmlFor="number" value="Product Selling Price" />
@@ -117,13 +121,13 @@ function CreateProduct(props) {
                         id="productSellingPrice"
                         type="number"
                         name="productSellingPrice"
-                        
+                        value={data.productSellingPrice}
                         className="mt-1 block w-full"
                         
                         onChange={(e) => setData('productSellingPrice', e.target.value)}
                     />
 
-                    <InputError message={errors.ProductSellingPrice} className="mt-2" />
+                    <InputError message={errors.productSellingPrice} className="mt-2" />
                 </div>
                 
 

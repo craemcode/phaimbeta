@@ -63,11 +63,11 @@ export default function Dashboard(props) {
                         </Link>
                         
                     </div>
-                    <div className=" bg-white flex-col-reverse md:flex-row grid grid-cols-2 gap-10 md:grid-cols-7 px-2 rounded-md">
+                    <div className=" bg-white flex  md:flex-row justify-around px-2 rounded-md">
                         {stocks.map(({ name, id, location }) => (
                             
                         <div
-                            className="bg-blue-100 rounded-lg mx-auto py-2 px-4 my-2 font-semibold hover:bg-green-100 cursor-pointer"
+                            className="bg-blue-100 grow-1 rounded-lg py-2 px-4 my-2 font-semibold hover:bg-green-100 cursor-pointer"
                             key={id}
                                 >
                                     <Link href={route('products.show',id)}>

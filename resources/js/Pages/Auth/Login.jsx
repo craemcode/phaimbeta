@@ -21,10 +21,10 @@ export default function Login({ status, canResetPassword }) {
     }, []);
 
     const submit = (e) => {
-        e.preventDefault();
+        e.preventDefault()
 
-        post(route('login'));
-    };
+        post(route('login'))
+    }
 
     return (
         <GuestLayout>

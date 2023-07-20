@@ -7,6 +7,7 @@ export default function PrimaryButton({ className = '', disabled, children, ...p
                     disabled && 'opacity-25'
                 } ` + className
             }
+            type="submit"
             disabled={disabled}
         >
             {children}
