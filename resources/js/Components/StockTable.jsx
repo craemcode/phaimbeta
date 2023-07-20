@@ -1,4 +1,5 @@
 import React, {useMemo} from 'react'
+import { router } from "@inertiajs/react";
 import { useTable,useBlockLayout, useFlexLayout, useGlobalFilter, usePagination } from "react-table";
 import GlobalFilter from "./GlobalFilter";
 import PaginationTable from "./PaginationTable";
@@ -78,7 +79,7 @@ const {
                         return (
                             <tr {...row.getRowProps()}
                             className='border-b transition duration-300 ease-in-out hover:bg-neutral-100 hover:cursor-pointer'
-                            onClick={()=>router.get(route('product.show',[product_name,stock_id]))} >
+                            onClick={()=>router.get(route('product.show',[row.original.id]))} >
                                 {row.cells.map(cell => {
                                     return <td {...cell.getCellProps()} className='px-6 py-4'>
                                         {cell.render('Cell')}

@@ -33,7 +33,7 @@ class ProductController extends Controller
      */
     public function create(Stock $stock)
     {
-        return Inertia::render('Records/CreateProduct',['stock'=>$stock]);
+        return Inertia::render('Records/CreateProduct',['stock'=>$stock->only('id','name')]);
     }
 
     /**
@@ -69,7 +69,9 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        
+        $stock = Stock::where('id', $product->stock_id)->first();
+
+        return Inertia::render('Records/Product',['product'=>$product, 'stock'=>$stock->only('name','id')]);
     }
 
     /**

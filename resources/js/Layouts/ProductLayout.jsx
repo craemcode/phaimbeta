@@ -14,12 +14,12 @@ const [showFlash,setShowFlash] = useState(true)
 
         <div className="w-full min-h-screen flex-initial flex  flex-col md:flex-row">
             <nav className=" bg-blue-900 hidden md:flex-col md:flex md:w-1/5 sticky top-0 h-screen hover:bg-blue-900 transition-all">
-                <div className="mt-3 w-full flex justify-center">
+                <div className="mt-3 w-full text-white flex justify-center">
                     <Link
                     as='button'
                     href={route('products.show',stock.id)}
                     disabled={route().current('products.show',{stock:stock.id})}>
-                        <h3 className={` text-base font-bold ${route().current('products.show',{stock:stock.id})?'bg-slate-200':'hover:bg-slate-200'}  rounded p-2`}>
+                        <h3 className={` text-base font-bold ${route().current('products.show',{stock:stock.id})?'bg-slate-200 text-black':'hover:bg-blue-600'}  rounded p-2`}>
                             {`${stock.name}'s Dashboard`}
                         </h3>
                     </Link>
