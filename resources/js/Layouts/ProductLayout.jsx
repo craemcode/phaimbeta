@@ -13,13 +13,13 @@ const [showFlash,setShowFlash] = useState(true)
 
 
         <div className="w-full min-h-screen flex-initial flex  flex-col md:flex-row">
-            <nav className=" bg-blue-900 hidden md:flex-col md:flex md:w-1/5 sticky top-0 h-screen hover:bg-blue-900 transition-all">
-                <div className="mt-3 w-full text-white flex justify-center">
+            <nav className=" bg-white-700 hidden md:flex-col md:flex md:w-1/5 sticky top-0 h-screen transition-all">
+                <div className="mt-3 w-full  flex justify-center">
                     <Link
                     as='button'
                     href={route('products.show',stock.id)}
                     disabled={route().current('products.show',{stock:stock.id})}>
-                        <h3 className={` text-base font-bold ${route().current('products.show',{stock:stock.id})?'bg-slate-200 text-black':'hover:bg-blue-600'}  rounded p-2`}>
+                        <h3 className={` text-base font-bold ${route().current('products.show',{stock:stock.id})?'bg-blue-800 text-white':'hover:bg-blue-600'}  rounded p-2`}>
                             {`${stock.name}'s Dashboard`}
                         </h3>
                     </Link>
@@ -30,7 +30,7 @@ const [showFlash,setShowFlash] = useState(true)
                 <div className='mt-2  w-full'>
 
 
-                    <h4 className="text-white p-2 border-b border-slate-200 font-semibold">Add Products</h4>
+                    <h4 className="text-green-800 p-2 border-b border-green-800 font-semibold">Add Products</h4>
                     <SidebarNavLink
                     as='button'
                     href={route('product.create',stock.id)}
@@ -45,7 +45,7 @@ const [showFlash,setShowFlash] = useState(true)
                         Bulk Import (csv)
                     </SidebarNavLink>
 
-                    <h4 className="text-white p-2 border-b border-slate-200 font-semibold">Reports</h4>
+                    <h4 className="text-green-800 p-2 border-b border-green-800 font-semibold">Reports</h4>
                     <SidebarNavLink 
                     as='button'
                     href={route('dashboard')}
@@ -69,7 +69,7 @@ const [showFlash,setShowFlash] = useState(true)
             
             
             
-            <div className="flex flex-col items-stretch justify-center grow pt-5 sm:pt-0 bg-gray-300 " >
+            <div className="flex flex-col items-stretch justify-center grow pt-5 sm:pt-0 bg-gray-50 " >
                 
                 
             <div className='bg-gray-300 justify-self-start'>
@@ -83,7 +83,7 @@ const [showFlash,setShowFlash] = useState(true)
             }
                 </div>
 
-                <div className='bg-gray-400 grow flex flex-col justify-center max-h-128'>
+                <div className='grow flex flex-col justify-center max-h-128'>
                 
                 {children}
                 </div>

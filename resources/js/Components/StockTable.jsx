@@ -60,13 +60,13 @@ const {
         preGlobalFilteredRows={preGlobalFilteredRows}
         globalFilter={globalFilter}
         setGlobalFilter={setGlobalFilter} />
-        <div className='p-6 pb-0 border border-slate-400 rounded-lg flex flex-col items-center w-fit'>
+        <div className='p-6 pb-0 border border-blue-600 rounded-lg flex flex-col items-center w-fit'>
             <table {...getTableProps()} className="justify-self-center mx-auto table text-sm text-left font-light" >
                 <thead>
                     {headerGroups.map(headerGroup=> (
-                        <tr {...headerGroup.getHeaderGroupProps()} className='border-b border-slate-400'>
+                        <tr {...headerGroup.getHeaderGroupProps()} className='border-b border-blue-600'>
                             {headerGroup.headers.map(column=> (
-                                <th {...column.getHeaderProps()} className='px-6 py-2'>
+                                <th {...column.getHeaderProps()} className='px-6 text-green-800 py-2'>
                                     {column.render('Header')}
                                 </th>
                             ))}
