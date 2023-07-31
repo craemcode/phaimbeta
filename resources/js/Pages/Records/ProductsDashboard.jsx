@@ -40,9 +40,9 @@ export default function ProductsDashboard(props) {
 
             <ProductLayout stock={stock} flash={flash}>
             
-                <div className="flex items-start ">
+                <div className="flex items-start justify-between">
 
-                    <div className="pt-10">
+                    <div className="pt-5 w-1/2">
                         
                         {
                     Object.keys(products).length ?
@@ -52,7 +52,7 @@ export default function ProductsDashboard(props) {
                         <p>No products to show</p>
                         }
                     </div>
-                    <div className="shadow-md border ml-4 grow">
+                    <div className="shadow-md border self-stretch mr-4 px-4 w-1/4">
                         <SalesCart cartItems = {cartItems}>
 
                         </SalesCart>

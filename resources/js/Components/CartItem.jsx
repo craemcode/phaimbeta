@@ -8,7 +8,14 @@ export default function CartItem({product}) {
     <div>{product.name}</div>
     <div>
         {quantity} {product.units} 
-        <span><input onChange={e=>setQuantity(e.target.value)}className="w-1/8 ml-3 px-4 py-2 text-black-700 bg-white border rounded-md focus:border-blue-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40" type="numeric" placeholder='Quantity to sell'/></span>
+        <span>
+            <input 
+            onChange={e=>setQuantity(e.target.value)}
+            className="w-1/8 ml-3 px-4 py-2 text-black-700 bg-white border rounded-md focus:border-blue-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40" 
+            type="numeric" 
+            placeholder='Quantity to sell'
+            />
+        </span>
     </div>
     <div>Ksh. {product.selling_price * quantity}</div>
 
