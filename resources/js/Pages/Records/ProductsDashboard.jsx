@@ -22,6 +22,13 @@ export default function ProductsDashboard(props) {
         }
     }
 
+    //function for removing items from the cart
+    const onRemove = (product)=>{
+        //find cart item with matching id
+        const item = cartItems.find((x)=>x.id===product.id)
+        setCartItems(cartItems.filter((x)=>x.id !== product.id))
+    }
+
 
 
 
@@ -42,7 +49,7 @@ export default function ProductsDashboard(props) {
             
                 <div className="flex items-start justify-between">
 
-                    <div className="pt-5 w-1/2">
+                    <div className="pt-5 w-3/4">
                         
                         {
                     Object.keys(products).length ?
@@ -52,8 +59,8 @@ export default function ProductsDashboard(props) {
                         <p>No products to show</p>
                         }
                     </div>
-                    <div className="shadow-md border self-stretch mr-4 px-4 w-1/4">
-                        <SalesCart cartItems = {cartItems}>
+                    <div className="shadow-md border rounded-md self-stretch mr-4 px-4 w-1/4">
+                        <SalesCart onRemove={onRemove} cartItems = {cartItems}>
 
                         </SalesCart>
                     </div>
