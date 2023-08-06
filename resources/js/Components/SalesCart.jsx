@@ -2,9 +2,10 @@ import React, { useState } from 'react'
 import CartItem from './CartItem'
 
 export default function SalesCart(props) {
-    const products = props.cartItems
-    const [total, setTotal] = useState(0)
+  const products = props.cartItems
+  const total = products.reduce((accumulator, current)=> accumulator+current.selling_price*current.qty,0)
 
+    
 
 
 
@@ -17,9 +18,12 @@ export default function SalesCart(props) {
               {
               Object.keys(products).length ?
                 products.map((product)=> (
-                <CartItem key={props.key} product={product} onRemove={props.onRemove}>
+                  <div key={product.id}>
+                      <CartItem  product={product} onRemove={props.onRemove}>
 
-                </CartItem>
+                      </CartItem>
+                  </div>
+                
                     )
                     )
                       :
