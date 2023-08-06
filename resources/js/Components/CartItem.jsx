@@ -20,7 +20,7 @@ export default function CartItem({product,onRemove,updateTotal}) {
       
       
   return (
-    <div className="border-b ">
+    <div className="border-b mb-2 ">
         <div className='flex justify-between'>
          
           <span className='font-bold'>
