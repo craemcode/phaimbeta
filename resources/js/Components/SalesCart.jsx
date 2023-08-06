@@ -4,7 +4,12 @@ import CartItem from './CartItem'
 export default function SalesCart(props) {
   const products = props.cartItems
   const total = products.reduce((accumulator, current)=> accumulator+current.selling_price*current.qty,0)
+  const [totalSales,setTotalSales] = useState(total)
 
+  const updateTotal = ()=>{
+    let localtot =products.reduce((accumulator, current)=> accumulator+current.selling_price*current.qty,0)
+    setTotalSales(localtot)
+  }
     
 
 
@@ -19,7 +24,7 @@ export default function SalesCart(props) {
               Object.keys(products).length ?
                 products.map((product)=> (
                   <div key={product.id}>
-                      <CartItem  product={product} onRemove={props.onRemove}>
+                      <CartItem  product={product} updateTotal={updateTotal} onRemove={props.onRemove}>
 
                       </CartItem>
                   </div>
@@ -30,9 +35,9 @@ export default function SalesCart(props) {
                 <p>No products in the cart</p>
                 }
           </div>
-        
+                
           <div>
-            Total Sales: {total}
+            Total Sales: Ksh. <span className='font-bold text-lg'>{products.length? totalSales:0}</span>
           </div>
         </div>
     
