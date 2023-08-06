@@ -3,9 +3,10 @@ import CartItem from './CartItem'
 
 export default function SalesCart(props) {
   const products = props.cartItems
-  const total = products.reduce((accumulator, current)=> accumulator+current.selling_price*current.qty,0)
-  const [totalSales,setTotalSales] = useState(total)
+  //const total = 
+  const [totalSales,setTotalSales] = useState(()=>{products.reduce((accumulator, current)=> accumulator+current.selling_price*current.qty,0)})
 
+  //update total for the salescart
   const updateTotal = ()=>{
     let localtot =products.reduce((accumulator, current)=> accumulator+current.selling_price*current.qty,0)
     setTotalSales(localtot)
