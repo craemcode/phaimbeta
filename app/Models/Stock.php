@@ -12,7 +12,7 @@ class Stock extends Model
      /**
      * Get the prdocuts from the stock.
      */
-    public function comments(): HasMany
+    public function products(): HasMany
     {
         return $this->hasMany(Product::class);
     }

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SaleController;
 use App\Http\Controllers\StockController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -42,8 +43,11 @@ Route::middleware('auth')->group(function () {
     Route::get('stock/{stock}/product/create',[ProductController::class, 'create'])->name('product.create');
     Route::post('product/create/new',[ProductController::class, 'store'])->name('product.store');
     Route::get('/product/{product}/info',[ProductController::class, 'show'])->name('product.show');
+    
+    //Route::get('product/{product}/sell',[ProductController::class, 'sell'])->name('product.sell');
     //Route::get('product/restock',[ProductController::class, 'restock'])->name('product.restock');
     //Route::post('stocks/{product}/restock',[ProductController::class, 'update'])->name('product.restock');
+    Route::post('/stocks/make_sale',[SaleController::class, 'store'])->name('products.sell');
     
     
     

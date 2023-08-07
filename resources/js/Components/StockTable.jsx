@@ -5,7 +5,7 @@ import GlobalFilter from "./GlobalFilter";
 import PaginationTable from "./PaginationTable";
 
 
-function StockTable({products,stock_id}) {
+function StockTable({products,stock_id,onAdd}) {
   
   const data = useMemo(()=>products,products)
   const columns = useMemo(()=>[
@@ -79,7 +79,7 @@ const {
                         return (
                             <tr {...row.getRowProps()}
                             className='border-b transition duration-300 ease-in-out hover:bg-neutral-100 hover:cursor-pointer'
-                            onClick={()=>router.get(route('product.show',[row.original.id]))} >
+                            onClick={()=>onAdd(row.original)} >
                                 {row.cells.map(cell => {
                                     return <td {...cell.getCellProps()} className='px-6 py-4'>
                                         {cell.render('Cell')}

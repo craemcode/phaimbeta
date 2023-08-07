@@ -3,6 +3,7 @@ import { Head, usePage } from "@inertiajs/react";
 import ProductLayout from '@/Layouts/ProductLayout';
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout"
 import ProductCard from '@/Components/ProductCard';
+import SalesCart from '@/Components/SalesCart';
 
 
 
@@ -32,6 +33,7 @@ function Product(props) {
                    />
                  
                 </div>
+                
             </div>
         </ProductLayout>
     </AuthenticatedLayout>
