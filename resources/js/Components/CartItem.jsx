@@ -8,13 +8,18 @@ export default function CartItem({product,onRemove,updateTotal}) {
     const updateqty = (event)=>{
       const value = event.target.value
       
-      //inefective method!. Will only work if another object is added to the cart
-      product.qty = value
-      
-
-      setQuantity((prevObject)=>(
-        {...prevObject, qty: value}
-      ))
+      //if user places something greater than the cart the value will automatically go to the maximum
+      if (value > product.amount){
+        product.qty = product.amount
+        setQuantity((prevObject)=>(
+          {...prevObject, qty: product.amount}
+        ))
+      }else{
+        product.qty = value
+        setQuantity((prevObject)=>(
+          {...prevObject, qty: value}
+        ))
+      }  
       
     }
       

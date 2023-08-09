@@ -40,9 +40,9 @@ const [showFlash,setShowFlash] = useState(true)
                     
                     <SidebarNavLink
                     as='button'
-                    href={route('dashboard')}
-                    active={route().current('dashboard')}>
-                        Bulk Import (csv)
+                    href={route('import.products',stock.id)}
+                    active={route().current('import.products',{stock:stock.id})}>
+                        Bulk Import (Excel)
                     </SidebarNavLink>
 
                     <h4 className="text-green-800 p-2 border-b border-green-800 font-semibold">Sell Products</h4>

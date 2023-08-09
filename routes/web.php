@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\ExportController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SaleController;
 use App\Http\Controllers\StockController;
+use App\Http\Controllers\ImportController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -41,6 +43,10 @@ Route::middleware('auth')->group(function () {
     //products controller
     Route::get('stock/{stock}/product/home',[ProductController::class, 'index'])->name('products.show');
     Route::get('stock/{stock}/product/create',[ProductController::class, 'create'])->name('product.create');
+    
+    //routes for importing bulk products with csv
+    Route::get('stock/{stock}/products/import',[ImportController::class, 'show'])->name('import.products');
+    Route::get('export-excel-template',ExportController::class)->name('export.excel.template');
     Route::post('product/create/new',[ProductController::class, 'store'])->name('product.store');
     Route::get('/product/{product}/info',[ProductController::class, 'show'])->name('product.show');
     
