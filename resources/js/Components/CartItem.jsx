@@ -43,7 +43,7 @@ export default function CartItem({product,onRemove,updateTotal}) {
                 value={cartObject.qty}
                 onChange={updateqty}
                 className="w-1/8 px-4 py-2 block text-black-700 bg-white border rounded-md focus:border-blue-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40" 
-                type="numeric" 
+                type="number" 
                 placeholder='Quantity to sell'
                 />
             </span>
