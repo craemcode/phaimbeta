@@ -89,7 +89,7 @@ const {
                         )
                     })}
                 </tbody>
-            </table>
+            </table>   
             <PaginationTable
             canPreviousPage={canPreviousPage}
             previousPage={previousPage}

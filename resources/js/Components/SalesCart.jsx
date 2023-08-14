@@ -43,7 +43,7 @@ export default function SalesCart(props) {
                     <div className='my-3'>
                       Total Sale: Ksh. <span className='font-bold text-lg'>{totalSales}</span>
                     </div>
-                    <Link href={route('products.sell')} as='button' method="post" data={products} className='bg-green-800 rounded-sm p-2 mt-2 text-white'>
+                    <Link href={route('products.sell')} as='button' method="post" preserveState={false} data={products} className='bg-green-800 rounded-sm p-2 mt-2 text-white'>
                       MAKE SALE
                     </Link>
                 </div>
