@@ -62,10 +62,15 @@ class SaleController extends Controller
     }
 
     public function show(Stock $stock, Sale $sale){
-        $sold_products = DB::table('sold_products')->where('sales_id',$sale->id)->get();
+        $sold_products = DB::table('sold_products')
+                            ->join('products','sold_products.product_id','=','products.id')
+                            ->select('sold_products.*','products.name')
+                            ->where('sales_id',$sale->id)->get();
+        
             
         return Inertia::render('Records/Sold_products',
         ['sold_products'=>$sold_products,
+        'sale'=>$sale,
         'stock'=>$stock->only('id','name')]);
     }
 }

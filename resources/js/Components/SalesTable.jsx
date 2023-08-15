@@ -6,6 +6,19 @@ import PaginationTable from "./PaginationTable";
 
 export default function SalesTable({sales,stock_id}) {
     const data = useMemo(()=>sales,sales)
+    
+    
+    //format the dates
+    sales.forEach((sale)=>(
+         sale.created_at = new Date(sale.created_at).toDateString()
+         
+    ))
+    
+    
+    
+    
+    
+    
     const columns = useMemo(()=>[
       {
           Header: 'Sale ID',

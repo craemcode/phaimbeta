@@ -16,8 +16,11 @@ export default function Sold_products(props) {
     }
 >
     <Head title={props.stock.name} />
-    <div>
-        <ProductCard sold_products={props.sold_products} stock_id={props.stock.id}/>
+    <div className='flex justify-evenly'>
+        <div className=''>
+        <ProductCard sold_products={props.sold_products} user={props.auth.user} sale={props.sale} stock_id={props.stock.id}/>
+        </div>
+        
     </div>
     </AuthenticatedLayout>
   )
