@@ -8,13 +8,18 @@ export default function CartItem({product,onRemove,updateTotal}) {
     const updateqty = (event)=>{
       const value = event.target.value
       
-      //inefective method!. Will only work if another object is added to the cart
-      product.qty = value
-      
-
-      setQuantity((prevObject)=>(
-        {...prevObject, qty: value}
-      ))
+      //if user places something greater than the cart the value will automatically go to the maximum
+      if (value > product.amount){
+        product.qty = product.amount
+        setQuantity((prevObject)=>(
+          {...prevObject, qty: product.amount}
+        ))
+      }else{
+        product.qty = value
+        setQuantity((prevObject)=>(
+          {...prevObject, qty: value}
+        ))
+      }  
       
     }
       
@@ -38,7 +43,7 @@ export default function CartItem({product,onRemove,updateTotal}) {
                 value={cartObject.qty}
                 onChange={updateqty}
                 className="w-1/8 px-4 py-2 block text-black-700 bg-white border rounded-md focus:border-blue-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40" 
-                type="numeric" 
+                type="number" 
                 placeholder='Quantity to sell'
                 />
             </span>

@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\ExportController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SaleController;
 use App\Http\Controllers\StockController;
+use App\Http\Controllers\ImportController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -41,6 +43,10 @@ Route::middleware('auth')->group(function () {
     //products controller
     Route::get('stock/{stock}/product/home',[ProductController::class, 'index'])->name('products.show');
     Route::get('stock/{stock}/product/create',[ProductController::class, 'create'])->name('product.create');
+    
+    //routes for importing bulk products with csv
+    Route::get('stock/{stock}/products/import',[ImportController::class, 'show'])->name('import.products');
+    Route::get('export-excel-template',ExportController::class)->name('export.excel.template');
     Route::post('product/create/new',[ProductController::class, 'store'])->name('product.store');
     Route::get('/product/{product}/info',[ProductController::class, 'show'])->name('product.show');
     
@@ -48,8 +54,8 @@ Route::middleware('auth')->group(function () {
     //Route::get('product/restock',[ProductController::class, 'restock'])->name('product.restock');
     //Route::post('stocks/{product}/restock',[ProductController::class, 'update'])->name('product.restock');
     Route::post('/stocks/make_sale',[SaleController::class, 'store'])->name('products.sell');
-    
-    
+    Route::get('stock/{stock}/sales',[SaleController::class, 'index'])->name('sales.index');
+    Route::get('stock/{stock}/sale/{sale}/show',[SaleController::class,'show'])->name('sale.show');
     
     
     
