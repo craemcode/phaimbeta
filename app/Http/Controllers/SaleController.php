@@ -64,13 +64,15 @@ class SaleController extends Controller
     public function show(Stock $stock, Sale $sale){
         $sold_products = DB::table('sold_products')
                             ->join('products','sold_products.product_id','=','products.id')
-                            ->select('sold_products.*','products.name')
+                            //select all rows in sold products and product name
+                            ->select('sold_products.*','products.name','products.units')
                             ->where('sales_id',$sale->id)->get();
         
             
         return Inertia::render('Records/Sold_products',
-        ['sold_products'=>$sold_products,
-        'sale'=>$sale,
-        'stock'=>$stock->only('id','name')]);
+                ['sold_products'=>$sold_products,
+                'sale'=>$sale,
+                'stock'=>$stock->only('id','name')]
+            );
     }
 }
