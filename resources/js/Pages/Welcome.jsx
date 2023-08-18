@@ -8,17 +8,17 @@ export default function Welcome({ auth }) {
         <>
             <Head title="Please Login" />
 
-            <div id="body" className="">
+            <div id="body" className="bg-gray-100 text-gray-800">
                 
-                <nav className="fixed min-w-full border-b-2 bg-white border-green-800 container mx-auto p-4 pt-0 items-end">
+                <nav className="fixed min-w-full border-b-2 bg-gray-100 opacity-100 border-green-800 container mx-auto p-4 pt-0 items-end">
         
                     <div className="flex items-center justify-between ">
         
                         <div className="pt-2 flex">
-                            <ApplicationLogo className="h-16 w-16 fill-current text-blue-700 inline">
+                            <ApplicationLogo className="h-16 w-16 fill-current text-blue-500 inline">
 
                             </ApplicationLogo>
-                            <span className='font-extrabold self-center tracking-wider ml-5 text-blue-700 text-3xl'> PHAIM </span> 
+                            <span className='font-extrabold self-center tracking-wider ml-5 text-blue-500 text-3xl'> PHAIM </span> 
                         </div>
                         <div className="hidden self-end lg:flex space-x-12">
                                
@@ -53,7 +53,7 @@ export default function Welcome({ auth }) {
                                 {auth.user ? (
                                     <Link
                                         href={route("dashboard")}
-                                        className=" p-3 px-6 pt-2 text-white bg-green-700 rounded-full baseline md:block   hover:text-green-700 hover:bg-white hover:font-black"
+                                        className=" p-3 px-6 pt-2 text-white  bg-green-700 rounded-full baseline md:block   hover:text-green-700 hover:bg-white hover:font-black"
                                     >
                                         Dashboard
                                     </Link>
@@ -61,9 +61,12 @@ export default function Welcome({ auth }) {
                                     <>
                                         <Link
                                             href={route("login")}
-                                            className=" mx-4 p-3 px-4 pt-2 text-white bg-green-700 rounded-full baseline md:block  hover:text-red-700 hover:bg-white hover:font-black"
+                                            className=" mx-4 px-3 p-2 text-gray-100 bg-blue-700 rounded-full baseline md:block  hover:text-yellow-700 hover:bg-gray-100 hover:font-black"
                                         >
+                                            <span className='pt-4'>
                                             Log in
+                                            </span>
+                                            
                                         </Link>
                                         <span className="  md:block font-semibold self-center">
                                             {" "}
@@ -71,7 +74,7 @@ export default function Welcome({ auth }) {
                                         </span>
                                         <Link
                                             href={route("register")}
-                                            className=" mx-4 p-3 px-4 pt-2 text-white bg-green-700 rounded-full baseline md:block  hover:text-green-700 hover:bg-white hover:font-black"
+                                            className=" mx-4 px-3 p-2 text-gray-100 bg-blue-700 rounded-full baseline md:block  hover:text-yellow-700 hover:bg-gray-100 hover:font-black"
                                         >
                                             Register
                                         </Link>
@@ -99,7 +102,7 @@ export default function Welcome({ auth }) {
                             <div className="flex justify-center md:justify-start">
                                 <a
                                     href=""
-                                    className="p-3 px-6 pt-2 text-white bg-blue-700 baseline mx-4 rounded-full baseline hover:text-green-800 hover:bg-white hover:font-black "
+                                    className="mx-4 px-3 p-2 text-gray-100 bg-blue-700 rounded-full baseline md:block  hover:text-yellow-700 hover:bg-gray-100 hover:font-black "
                                 >
                                     <Link href={route("register")} className="">
                                         Register
@@ -119,7 +122,7 @@ export default function Welcome({ auth }) {
                 <section id="features">
                     <div className="container flex flex-col items-center px-6 mx-auto mt-10 space-y-12 md:space-y-0 md:flex-row">
                         <div className="flex flex-col space-y-12 md:w-1/2">
-                            <h2 className="max-w-md text-4xl font-bold text-center">
+                            <h2 className="max-w-md text-4xl font-bold">
                                 What's Different About Phaim?
                             </h2>
                             <p className="max-w-sm text-center md:text-left">
@@ -136,9 +139,9 @@ export default function Welcome({ auth }) {
                         </div>
                         <div className="flex flex-col space-y-8 md:w-1/2">
                             <div className="flex flex-col space-y-3 md:space-y-0 md:space-x-6 md:flex-row">
-                                <div className="rounded-l-full bg-green-600 max-w-md md:bg-transparent">
+                                <div className="rounded-l-full bg-blue-300 max-w-md md:bg-transparent">
                                     <div className="flex items-center space-x-2">
-                                        <div className="px-4 py-2 text-white rounded-full md:py-1 bg-blue-800">
+                                        <div className="px-4 py-2 text-blue-100 rounded-full md:py-1 bg-yellow-800">
                                             1
                                         </div>
                                         <h3 className="text-base text-white font-bold md:mb-4 md:hidden">
@@ -162,9 +165,9 @@ export default function Welcome({ auth }) {
                                 </div>
                             </div>
                             <div className="flex flex-col space-y-3 md:space-y-0 md:space-x-6 md:flex-row">
-                                <div className="rounded-l-full bg-green-700 max-w-md md:bg-transparent">
+                                <div className="rounded-l-full bg-blue-500 max-w-md md:bg-transparent">
                                     <div className="flex items-center space-x-2">
-                                        <div className="px-4 py-2 text-white rounded-full md:py-1 bg-blue-700">
+                                        <div className="px-4 py-2 text-blue-500 rounded-full md:py-1 bg-yellow-500">
                                             2
                                         </div>
                                         <h3 className="text-base text-white font-bold md:mb-4 md:hidden">
@@ -190,10 +193,10 @@ export default function Welcome({ auth }) {
                                     </p>
                                 </div>
                             </div>
-                            <div class="flex flex-col space-y-3 md:space-y-0 md:space-x-6 md:flex-row">
-                                <div className="rounded-l-full max-w-md bg-green-800 md:bg-transparent">
+                            <div class="flex flex-col space-y-3 md:space-y-0 md:space-x-6 md:flex-row ">
+                                <div className="rounded-l-full max-w-md bg-blue-800 md:bg-transparent">
                                     <div className="flex items-center space-x-2">
-                                        <div className="px-4 py-2 text-white rounded-full md:py-1 bg-blue-600">
+                                        <div className="px-4 py-2 text-blue-900 rounded-full md:py-1 bg-yellow-300">
                                             3
                                         </div>
                                         <h3 className="text-base text-white font-bold md:mb-4 md:hidden">
@@ -202,7 +205,7 @@ export default function Welcome({ auth }) {
                                     </div>
                                 </div>
 
-                                <div>
+                                <div className=''>
                                     <h3 className="hidden mb-4 text-lg font-bold md:block">
                                         Very Affordable
                                     </h3>
@@ -225,16 +228,16 @@ export default function Welcome({ auth }) {
                     </div>
                 </section>
                 
-                <section id="cta" className="bg-green-800 mt-10 ">
+                <section id="cta" className="bg-[url('/img/background.svg')] mt-10 ">
                     <div className="container flex flex-col items-center justify-between px-6 py-24 mx-auto space-y-12 md:py-12 md:flex-row md:space-y-0">
-                        <h2 className="text-5xl font-bold leading-tight text-center text-white md:text-4xl md:max-w-xl md:text-left">
+                        <h2 className="text-5xl font-bold leading-tight text-center text-gray-800 md:text-4xl md:max-w-xl md:text-left">
                             Get a free 1 month trial now!
                         </h2>
 
                         <div>
                             <a
                                 href=""
-                                className="p-3 px-6 pt-2 text-red-800 font-black bg-white baseline mx-4 rounded-lg baseline hover:text-white hover:bg-red-800 hover:font-black "
+                                className="p-3 px-6 pt-2 text-red-100 font-black bg-gray-800 baseline mx-4 rounded-lg baseline hover:red-100 hover:bg-green-300 hover:text-gray-900 hover:font-black "
                             >
                                 <Link href={route("register")} className="">
                                     Register

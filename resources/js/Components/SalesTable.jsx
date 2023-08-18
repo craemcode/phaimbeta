@@ -26,7 +26,7 @@ export default function SalesTable({sales,stock_id}) {
       },
          
       {
-          Header: 'Date & time of Sale',
+          Header: 'Date of Sale',
           accessor: 'created_at',
       },
   ], sales)
@@ -85,7 +85,7 @@ export default function SalesTable({sales,stock_id}) {
                         className='border-b transition duration-300 ease-in-out hover:bg-neutral-100 hover:cursor-pointer'
                         onClick={()=>{router.get(route('sale.show', [stock_id,row.original.id]))}} >
                             {row.cells.map(cell => {
-                                return <td {...cell.getCellProps()} className='px-6 py-4'>
+                                return <td {...cell.getCellProps()} className='px-3 py-4'>
                                     {cell.render('Cell')}
                                 </td>
                             })}

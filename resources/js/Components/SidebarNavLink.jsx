@@ -7,7 +7,7 @@ export default function SidebarNavLink({method = 'get',as = 'button',href,active
         as={as}
         href={href}
         disabled={active}
-        className={`hover:text-white transition-all flex p-2 pl-4 w-full  ${active ?'border-l-8 border-cyan-200 bg-slate-50 text-gray-600':'hover:bg-blue-800 hover:text-blue-700'}`}>
+        className={`text-gray-900 transition-all ease-in duration-300 flex p-2 pl-3 w-full  ${active ?'border-l-8 hover:pl-4 border-blue-800 text-gray-900':'hover:pl-6'}`}>
             {children}
         </Link>
     )
