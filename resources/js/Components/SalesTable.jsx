@@ -59,7 +59,7 @@ export default function SalesTable({sales,stock_id}) {
   
   
     return (
-    <div className="mx-auto bg-white flex flex-col items-center justify-center p-12  pt-2 relative">
+    <div className="mx-auto bg-white flex flex-col items-center justify-center p-12 m-2 rounded-lg pt-2 relative">
     <GlobalFilter
     preGlobalFilteredRows={preGlobalFilteredRows}
     globalFilter={globalFilter}

@@ -19,7 +19,7 @@ export default function Sales(props) {
     >
     <Head title={props.stock.name} />
     <ProductLayout stock={stock} flash={props.flash}>
-          <SalesTable sales={sales} stock_id={stock.id}/>
+                <SalesTable sales={sales} stock_id={stock.id}/>
     </ProductLayout>
     </AuthenticatedLayout>
   )
