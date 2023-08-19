@@ -24,13 +24,13 @@ export default function Products(props) {
   return (
     <AuthenticatedLayout
     user={props.auth.user}
-    header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Products Dashboard: {`${props.stock.name}`}</h2>}
+    header={<h2 className="font-semibold text-xl text-gray-800 leading-tight"> {`${props.stock.name}`}</h2>}
     errors={props.errors}
     >
         <Head title={stock.name}/>
         
         
-        <div className="min-h-screen flex flex-col items-center pt-6 sm:pt-0 bg-gray-100">
+        <div className="min-h-screen flex flex-col items-center pt-6 sm:pt-0 bg-[url('/img/background.svg')]">
            
             <div className="flex flex-col justify-center items-center max-w-lg shadow-inner bg-gray-50 px-10 py-8 mb-12 text-gray-600 rounded-lg">
                 <h4
@@ -38,16 +38,16 @@ export default function Products(props) {
                     Import Products to {`${stock.name}`}
                 </h4>
                 {importProducts.errors.uploaded_products_excel && `error`}
-                <span className='mx-4 px-6 text-center text-gray-700 mb-2'>Kindly follow the below guidelines before importing/uploading your excel file:</span>
+                <span className=' text-gray-700 mb-2'>Kindly follow the below guidelines before importing/uploading your excel file:</span>
                 <ol className=' font-light mb-6 text-left list-decimal list-inside'>
                     <li>Ensure your file is in .xlsx format</li>
                    <li> Strictly follow the example given in the template for best results</li>
-                    <li>To download a template for inputting data, <a href={route('export.excel.template')} className='border-b border-blue-800 text-blue-800' >CLICK HERE</a> </li>
+                    <li>To download a template for inputting data, <a href={route('export.excel.template')} className='border-b border-yellow-800 text-yellow-800' >Click here</a> </li>
                 </ol>
                 <form className='flex flex-col items-center' onSubmit={importExcel}>
                     <div className='flex flex-col items-center m-4 relative w-4/5  max-w-xs mb-6 bg-white rounded-lg shadow'>
                         <label htmlFor="file-upload" className='z-20 pt-6 flex flex-col items-center justify-center w-full h-full cursor-pointer'>
-                            <svg className='z-10 w-12 h-12 text-blue-800' fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <svg className='z-10 w-12 h-12 text-gray-500' fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"></path>
                             </svg>
                             <p className="z-10 text-xs font-light text-center text-gray-500">Drag & Drop your file here</p>
@@ -57,7 +57,7 @@ export default function Products(props) {
                     </div>
                     <button
                     type='submit'
-                    className='py-1 px-6 mx-2 transition ease-in-out duration-75 text-base w-3/5 bg-green-800 hover:shadow hover:bg-green-500 text-white rounded'
+                    className='py-1 px-6 mx-2 transition ease-in-out duration-200 text-base w-3/5 bg-blue-800 hover:text-green-900 hover:shadow hover:bg-green-300 text-white rounded'
                     disabled={importProducts.processing}>
                         Import
                     </button>

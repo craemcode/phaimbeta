@@ -19,7 +19,7 @@ export default function SalesCart(props) {
   return (
     <aside>
         
-        <div className='flex flex-col justify-between'>
+        <div className='flex flex-col justify-between pt-2 pb-4'>
           <div className='grow'>
               <h3 className='font-bold text-lg mb-5 '>Sales Cart</h3>
               {
@@ -43,8 +43,8 @@ export default function SalesCart(props) {
                     <div className='my-3'>
                       Total Sale: Ksh. <span className='font-bold text-lg'>{totalSales}</span>
                     </div>
-                    <Link href={route('products.sell')} as='button' method="post" preserveState={false} data={products} className='bg-green-800 rounded-sm p-2 mt-2 text-white'>
-                      MAKE SALE
+                    <Link href={route('products.sell')} as='button' method="post" preserveState={false} data={products} className='bg-blue-700 font-bold rounded-sm p-2 mt-2 text-white'>
+                      Make Sale
                     </Link>
                 </div>
                 :"Add products to the cart by clicking them."

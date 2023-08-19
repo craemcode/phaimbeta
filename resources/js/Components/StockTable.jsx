@@ -11,19 +11,23 @@ function StockTable({products,stock_id,onAdd}) {
   const columns = useMemo(()=>[
     {
         Header: 'Product Name',
+        width: 200,
         accessor: 'name',
     },
     {
         Header: 'Units',
+        width: 125,
         accessor: 'units',
     },
     {
         Header: 'Amount Remaining',
         accessor: 'amount',
+        width: 100,
     },
  
     {
         Header: 'Selling Price',
+        width: 100,
         accessor: 'selling_price',
     },
 ], products)
@@ -55,18 +59,18 @@ const {
   
   
     return (
-        <div className="mx-auto bg-white flex flex-col items-center justify-center p-12  pt-2 relative">
+        <div className=" bg-white flex flex-col items-center justify-center mx-4 rounded-lg  pt-2 pb-6 shadow relative">
         <GlobalFilter
         preGlobalFilteredRows={preGlobalFilteredRows}
         globalFilter={globalFilter}
         setGlobalFilter={setGlobalFilter} />
-        <div className='p-6 pb-0 border border-blue-600 rounded-lg flex flex-col items-center w-fit'>
-            <table {...getTableProps()} className="justify-self-center mx-auto table text-sm text-left font-light" >
+        <div className='p-2 pb-0  rounded-lg flex flex-col items-center'>
+            <table {...getTableProps()} className="justify-self-center table text-sm text-left font-light" >
                 <thead>
                     {headerGroups.map(headerGroup=> (
                         <tr {...headerGroup.getHeaderGroupProps()} className='border-b border-blue-600'>
                             {headerGroup.headers.map(column=> (
-                                <th {...column.getHeaderProps()} className='px-6 text-green-800 py-2'>
+                                <th {...column.getHeaderProps()} className='px-4 text-green-800 py-2'>
                                     {column.render('Header')}
                                 </th>
                             ))}
@@ -81,7 +85,7 @@ const {
                             className='border-b transition duration-300 ease-in-out hover:bg-neutral-100 hover:cursor-pointer'
                             onClick={()=>onAdd(row.original)} >
                                 {row.cells.map(cell => {
-                                    return <td {...cell.getCellProps()} className='px-6 py-4'>
+                                    return <td {...cell.getCellProps()} className='px-4 py-2'>
                                         {cell.render('Cell')}
                                     </td>
                                 })}

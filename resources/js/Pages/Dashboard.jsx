@@ -1,4 +1,5 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
+import Footer from '@/Components/Footer';
 
 import { Head,Link, usePage } from '@inertiajs/react';
 
@@ -16,12 +17,14 @@ export default function Dashboard(props) {
             }
         >
             <Head title="Dashboard" />
+            <div className="min-h-screen bg-[url('/img/hollowed-boxes.svg')] p-4">
 
+            
             {
                 //flash messages logic
                 flash.message && (
                     <div
-                        className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 my-3 mx-auto rounded relative md:flex max-w-md justify-center cursor-pointer"
+                        className="bg-green-100 border border-green-400 text-green-700 px-4 py-3  mx-auto rounded relative md:flex max-w-md justify-center cursor-pointer"
                         role="alert"
                         id="addStockMessage"
                         onClick={() => {
@@ -48,8 +51,8 @@ export default function Dashboard(props) {
                 )
             }
 
-            <div className="max-w-7xl py-12 mx-auto sm:px-6 lg:px-12">
-                <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div className="max-w-7xl py-12 mx-auto sm:px-6 lg:px-12 flex flex-col items-center ">
+                <div className="bg-white w-1/2 overflow-hidden shadow-sm sm:rounded-lg">
                     <div className="p-6 bg-white border-b border-gray-200">
                        A stock can also be called a clinic. It is the collection of all products in your pharmacy.
                         <p className='font-bold'>Press the button below to create a new clinic/stock</p>
@@ -63,21 +66,39 @@ export default function Dashboard(props) {
                         </Link>
                         
                     </div>
-                    <div className=" bg-white flex  md:flex-row justify-around px-2 rounded-md">
+                    <div className=" bg-white flex  md:flex-row justify-around px-2 rounded-md py-4 flex-wrap">
                         {stocks.map(({ name, id, location }) => (
                             
-                        <div
-                            className="bg-blue-100 grow-1 rounded-lg py-2 px-4 my-2 font-semibold hover:bg-green-100 cursor-pointer"
+                        <Link
+                        as='div'
+                        href={route('products.show',id)}
+                            className="bg-blue-100 grow-1 rounded-lg py-2 px-4 my-2 font-semibold hover:bg-green-100 cursor-pointer shadow-lg"
                             key={id}
                                 >
-                                    <Link href={route('products.show',id)}>
+                                    <div>
+                                        <img src="img/chemist.svg" alt="" />
+                                    </div>
+
+
+
+                                    <div className='flex flex-row justify-between items-center'>
+                                    <span>
                                         {name} <br></br> {location}
-                                    </Link>   
-                                </div>
+                                    </span>   
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.2} stroke="currentColor" className="w-6 h-6 font-normal">
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                                    </svg>
+                                    </div>
+
+                                </Link>
                         ))}
                     </div>
                 </div>
             </div>
+            </div>
+            <Footer>
+
+            </Footer>
         </AuthenticatedLayout>
     );
 }
