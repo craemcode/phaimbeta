@@ -2,16 +2,33 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\ProductsImport;
 use App\Models\Product;
 use App\Models\Stock;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
-
-
+use Maatwebsite\Excel\Excel as ExcelExcel;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ProductController extends Controller
 {   
 
+    /**
+     * Bulk import products
+    */
+    public function import(Request $request,Stock $stock)
+    {
+        $request->validate([
+            'uploaded_products_excel' => 'required|mimes:xlsx',
+        ]);
+        $file = $request->file('uploaded_products_excel');
+        if ($file)
+        {
+            $import = new ProductsImport($stock->id);
+            Excel::import($import,$file,readerType:ExcelExcel::XLSX);
+            return to_route('products.show',$stock->id)->with('success',$import->getRowCount().' Products Successfully added');
+        }
+    }
 
     /**
      * Display a listing of the resource.
