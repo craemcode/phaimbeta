@@ -44,6 +44,9 @@ Route::middleware('auth')->group(function () {
     Route::get('stock/{stock}/product/home',[ProductController::class, 'index'])->name('products.show');
     Route::get('stock/{stock}/product/create',[ProductController::class, 'create'])->name('product.create');
     
+    // Route to bulk import products
+    Route::post('stock/{stock}/products/import',[ProductController::class,'import'])->name('products.bulk.import');
+
     //routes for importing bulk products with csv
     Route::get('stock/{stock}/products/import',[ImportController::class, 'show'])->name('import.products');
     Route::get('export-excel-template',ExportController::class)->name('export.excel.template');

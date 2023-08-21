@@ -5,7 +5,8 @@ import { Head, useForm } from "@inertiajs/react";
 
 
 export default function Products(props) {
-  const stock = props.stock
+    // Get the relevant props via destructuring the props object
+  const {stock} = props
   
   const importProducts = useForm(
     {uploaded_products_excel: null,}
@@ -14,7 +15,7 @@ export default function Products(props) {
   function importExcel(event){
     event.preventDefault()
     importProducts.transform((data)=>({...data,stock_id:stock.id}))
-    importProducts.post(route('products.bulk.import'))
+    importProducts.post(route('products.bulk.import',stock.id))
   }
   
   
@@ -32,7 +33,7 @@ export default function Products(props) {
         
         <div className="min-h-screen flex flex-col items-center pt-6 sm:pt-0 bg-[url('/img/background.svg')]">
            
-            <div className="flex flex-col justify-center items-center max-w-lg shadow-inner bg-gray-50 px-10 py-8 mb-12 text-gray-600 rounded-lg">
+            <div className="flex flex-col justify-center items-center max-w-lg shadow bg-white mt-4 px-10 py-8 mb-12 text-gray-600 rounded-lg">
                 <h4
                 className='text-2xl font-semibold mb-4 text-gray-800' >
                     Import Products to {`${stock.name}`}
@@ -42,18 +43,19 @@ export default function Products(props) {
                 <ol className=' font-light mb-6 text-left list-decimal list-inside'>
                     <li>Ensure your file is in .xlsx format</li>
                    <li> Strictly follow the example given in the template for best results</li>
+                   <li> The import file will be read starting from the third row</li>
                     <li>To download a template for inputting data, <a href={route('export.excel.template')} className='border-b border-yellow-800 text-yellow-800' >Click here</a> </li>
                 </ol>
                 <form className='flex flex-col items-center' onSubmit={importExcel}>
-                    <div className='flex flex-col items-center m-4 relative w-4/5  max-w-xs mb-6 bg-white rounded-lg shadow'>
+                    <div className='flex flex-col items-center m-4 relative w-4/5  max-w-xs mb-6 bg-slate-50 rounded-lg shadow-inner hover:shadow-lg transition-all'>
                         <label htmlFor="file-upload" className='z-20 pt-6 flex flex-col items-center justify-center w-full h-full cursor-pointer'>
                             <svg className='z-10 w-12 h-12 text-gray-500' fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"></path>
                             </svg>
                             <p className="z-10 text-xs font-light text-center text-gray-500">Drag & Drop your file here</p>
                         </label>
-                        <input type="file" id='file-upload' className='p-4 mx-auto text-center placeholder:text-center hover:cursor-pointer focus:border-0 outline-none focus:outline-none file:rounded-full file:border-0 file:mr-4 file:p-2 file:px-4 file:hidden file:hover:cursor-pointer'
-                        onChange={e => importProducts.setData((data)=>({...data,uploaded_rooms_excel:e.target.files[0]}))} />
+                        <input type="file" id='file-upload' className='p-4 w-full text-center placeholder:text-center hover:cursor-pointer focus:border-0 file:max-w-sm outline-none focus:outline-none file:rounded-full file:border-0 file:mr-4 file:p-2 file:px-4 file:hidden file:hover:cursor-pointer'
+                        onChange={e => importProducts.setData((data)=>({...data,uploaded_products_excel:e.target.files[0]}))} />
                     </div>
                     <button
                     type='submit'
