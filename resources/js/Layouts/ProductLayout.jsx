@@ -75,7 +75,7 @@ const [showFlash,setShowFlash] = useState(true)
             <div className="flex flex-col items-stretch justify-center  grow pt-5 sm:pt-0 " >
                 
                 
-            <div className='bg-gray-100 justify-self-start'>
+            <div className=' justify-self-start'>
                 {
                 (flash.message && showFlash) && 
                 <FlashMessage message={flash.message} onClick={() => setShowFlash(false)} />
