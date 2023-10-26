@@ -44,6 +44,13 @@ const [showFlash,setShowFlash] = useState(true)
                     active={route().current('import.products',{stock:stock.id})}>
                         Bulk Import (Excel)
                     </SidebarNavLink>
+                    
+                    <SidebarNavLink
+                    as='button'
+                    href={route('product.restock',stock.id)}
+                    active={route().current('product.restock',{stock:stock.id})}>
+                        Restock
+                    </SidebarNavLink>
 
                     
                     

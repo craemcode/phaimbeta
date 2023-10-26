@@ -52,10 +52,10 @@ Route::middleware('auth')->group(function () {
     Route::get('export-excel-template',ExportController::class)->name('export.excel.template');
     Route::post('product/create/new',[ProductController::class, 'store'])->name('product.store');
     Route::get('/product/{product}/info',[ProductController::class, 'show'])->name('product.show');
+
+    Route::get('stock/{stock}/restock',[RestockController::class, 'show'])->name('product.restock');
     
-    //Route::get('product/{product}/sell',[ProductController::class, 'sell'])->name('product.sell');
-    //Route::get('product/restock',[ProductController::class, 'restock'])->name('product.restock');
-    //Route::post('stocks/{product}/restock',[ProductController::class, 'update'])->name('product.restock');
+    //routes for making sales and viewing sales data
     Route::post('/stocks/make_sale',[SaleController::class, 'store'])->name('products.sell');
     Route::get('stock/{stock}/sales',[SaleController::class, 'index'])->name('sales.index');
     Route::get('stock/{stock}/sale/{sale}/show',[SaleController::class,'show'])->name('sale.show');
