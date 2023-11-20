@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('restocks', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('stock_id')->constrained(
+                table:'stocks', indexName: 'restock_stock_id'
+            );
             $table->timestamps();
         });
     }

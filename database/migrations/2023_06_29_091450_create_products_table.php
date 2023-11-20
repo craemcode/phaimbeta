@@ -18,6 +18,7 @@ return new class extends Migration
             );
             $table->string('name');
             $table->string('units');
+            //$table->string('batch_number');
             $table->integer('amount');
             $table->integer('buying_price');
             $table->integer('selling_price');
