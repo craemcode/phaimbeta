@@ -17,7 +17,7 @@ class RestockController extends Controller
         $products = Product::where('stock_id', $stock_id)->get();
        
        
-        return Inertia::render('Records/ProductsDashboard',[
+        return Inertia::render('Records/RestockDashboard',[
             'products'=>$products, 
             'stock'=>$stock->only('id','name')]);
         }

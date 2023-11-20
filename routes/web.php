@@ -6,6 +6,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SaleController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\ImportController;
+use App\Http\Controllers\RestockController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -54,7 +55,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/product/{product}/info',[ProductController::class, 'show'])->name('product.show');
 
     //restock route
-    Route::get('stock/{stock}/restock',[RestockController::class, 'show'])->name('product.restock');
+    Route::get('stock/{stock}/restock',[RestockController::class, 'index'])->name('product.restock');
     
     //routes for making sales and viewing sales data
     Route::post('/stocks/make_sale',[SaleController::class, 'store'])->name('products.sell');
