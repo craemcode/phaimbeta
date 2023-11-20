@@ -53,7 +53,7 @@ Route::middleware('auth')->group(function () {
     Route::post('product/create/new',[ProductController::class, 'store'])->name('product.store');
     Route::get('/product/{product}/info',[ProductController::class, 'show'])->name('product.show');
 
-    //restock
+    //restock route
     Route::get('stock/{stock}/restock',[RestockController::class, 'show'])->name('product.restock');
     
     //routes for making sales and viewing sales data
