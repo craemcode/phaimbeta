@@ -7,6 +7,7 @@ import ProductLayout from "@/Layouts/ProductLayout";
 import { Head, usePage } from "@inertiajs/react";
 import StockTable from "@/Components/StockTable";
 import SalesCart from "@/Components/SalesCart";
+import RestockCart from "@/Components/RestockCart";
 
 
 export default function RestockDashboard(props) {
@@ -68,9 +69,9 @@ export default function RestockDashboard(props) {
                         }
                     </div>
                     <div className=" bg-gray-100 shadow-md border rounded-md self-stretch mx-4 px-4 w-1/4">
-                        <SalesCart onRemove={onRemove} cartItems = {cartItems}>
+                        <RestockCart onRemove={onRemove} cartItems = {cartItems}>
 
-                        </SalesCart>
+                        </RestockCart>
                     </div>
                 </div>
             </ProductLayout>
