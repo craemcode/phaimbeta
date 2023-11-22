@@ -41,7 +41,10 @@ export default function RestockCartItem({product,onRemove,updateTotal}) {
                 placeholder='Quantity to Restock'
                 />
             </span>
+          </div>
+          <div>
             <span>
+                Batch Number:
                 <input 
                 name='batch_no'
                 value={cartObject.batch_no}
@@ -52,7 +55,7 @@ export default function RestockCartItem({product,onRemove,updateTotal}) {
                 />
             </span>
           </div>
-        <div className=' mt-4'>Ksh. <span className='font-bold text-lg'>{cartObject.selling_price * cartObject.qty}</span></div>
+        <div className=' mt-4'>Ksh. <span className='font-bold text-lg'>{cartObject.buying_price * cartObject.qty}</span></div>
 
 </div>
   )

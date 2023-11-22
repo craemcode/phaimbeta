@@ -4,13 +4,13 @@ import { Link } from '@inertiajs/react'
 
 export default function RestockCart(props) {
     const products = props.cartItems
-    const total = products.reduce((accumulator, current)=> accumulator+current.selling_price*current.qty,0)
-    const [totalSales,setTotalSales] = useState(total)
+    const total = products.reduce((accumulator, current)=> accumulator+current.buying_price*current.qty,0)
+    const [totalRestock,setTotalRestock] = useState(total)
   
     //update total for the salescart
     const updateTotal = ()=>{
-      let localtot =products.reduce((accumulator, current)=> accumulator+current.selling_price*current.qty,0)
-      setTotalSales(localtot)
+      let localtot =products.reduce((accumulator, current)=> accumulator+current.buying_price*current.qty,0)
+      setTotalRestock(localtot)
     }
       
     const create_batch_no_property = (product)=>{
@@ -62,7 +62,7 @@ export default function RestockCart(props) {
                         <div className="my-3">
                             Total Restock: Ksh.{" "}
                             <span className="font-bold text-lg">
-                                {totalSales}
+                                {totalRestock}
                             </span>
                         </div>
                         <Link
