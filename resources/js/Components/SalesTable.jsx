@@ -59,18 +59,18 @@ export default function SalesTable({sales,stock_id}) {
   
   
     return (
-    <div className="mx-auto bg-white flex flex-col items-center justify-center p-12 m-2 rounded-lg pt-2 relative">
+    <div className="mx-auto bg-white flex flex-col items-center justify-center m-2 rounded-lg relative">
     <GlobalFilter
     preGlobalFilteredRows={preGlobalFilteredRows}
     globalFilter={globalFilter}
     setGlobalFilter={setGlobalFilter} />
-    <div className='p-6 pb-0 border border-blue-600 rounded-lg flex flex-col items-center w-fit'>
+    <div className='p-2 pb-0 rounded-lg flex flex-col items-center w-fit'>
         <table {...getTableProps()} className="justify-self-center mx-auto table text-sm text-left font-light" >
             <thead>
                 {headerGroups.map(headerGroup=> (
                     <tr {...headerGroup.getHeaderGroupProps()} className='border-b border-blue-600'>
                         {headerGroup.headers.map(column=> (
-                            <th {...column.getHeaderProps()} className='px-6 text-green-800 py-2'>
+                            <th {...column.getHeaderProps()} className='px-2 text-green-800 py-2'>
                                 {column.render('Header')}
                             </th>
                         ))}
@@ -85,7 +85,7 @@ export default function SalesTable({sales,stock_id}) {
                         className='border-b transition duration-300 ease-in-out hover:bg-neutral-100 hover:cursor-pointer'
                         onClick={()=>{router.get(route('sale.show', [stock_id,row.original.id]))}} >
                             {row.cells.map(cell => {
-                                return <td {...cell.getCellProps()} className='px-3 py-4'>
+                                return <td {...cell.getCellProps()} className='px-2 py-2'>
                                     {cell.render('Cell')}
                                 </td>
                             })}

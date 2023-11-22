@@ -1,28 +1,19 @@
 import React,  { useState } from 'react'
 
-export default function CartItem({product,onRemove,updateTotal}) {
-    const [cartObject,setQuantity] = useState(product)
+export default function RestockCartItem({product,onRemove,updateTotal}) {
+    const [cartObject,setProperty] = useState(product)
+    
     updateTotal()
 
-
-    const updateqty = (event)=>{
-      const value = event.target.value
-      
-      //if user places something greater than the cart the value will automatically go to the maximum
-      if (value > product.amount){
-        product.qty = product.amount
-        setQuantity((prevObject)=>(
-          {...prevObject, qty: product.amount}
-        ))
-      }else if(value>=0){
-        product.qty = value
-        setQuantity((prevObject)=>(
-          {...prevObject, qty: value}
-        ))
-      }  
-      
-    }
-      
+    const handle_prop_change = (propertyName,newValue)=>{
+        
+        
+            setProperty(prevState => ({
+                ...prevState,
+                [propertyName]: newValue,
+              }));
+        }
+       
       
   return (
     <div className="border-b mb-2 ">
@@ -44,14 +35,27 @@ export default function CartItem({product,onRemove,updateTotal}) {
                 <input 
                 name='qty'
                 value={cartObject.qty}
-                onChange={updateqty}
+                onChange={(e)=>{handle_prop_change('qty',e.target.value)}}
                 className=" px-4  text-black-700  bg-inherit h-8 border-0 bg-slate-200 rounded-md focus:border-blue-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40" 
                 type="number" 
-                placeholder='Quantity to sell'
+                placeholder='Quantity to Restock'
                 />
             </span>
           </div>
-        <div className=' mt-4'>Ksh. <span className='font-bold text-lg'>{cartObject.selling_price * cartObject.qty}</span></div>
+          <div>
+            <span>
+                Batch Number:
+                <input 
+                name='batch_no'
+                value={cartObject.batch_no}
+                onChange={(e)=>{handle_prop_change('batch_no',e.target.value)}}
+                className=" px-4  text-black-700  bg-inherit h-8 border-0 bg-slate-200 rounded-md focus:border-blue-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40" 
+                type="number" 
+                placeholder='Batch Number'
+                />
+            </span>
+          </div>
+        <div className=' mt-4'>Ksh. <span className='font-bold text-lg'>{cartObject.buying_price * cartObject.qty}</span></div>
 
 </div>
   )
