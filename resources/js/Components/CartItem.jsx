@@ -14,7 +14,13 @@ export default function CartItem({product,onRemove,updateTotal}) {
         setQuantity((prevObject)=>(
           {...prevObject, qty: product.amount}
         ))
-      }else if(value>=0){
+      }else if(value==0){
+        product.qty = 1
+        setQuantity((prevObject)=>(
+          {...prevObject, qty: value}
+        ))
+        
+      }else if(value>0){//the input will not accept zero figures
         product.qty = value
         setQuantity((prevObject)=>(
           {...prevObject, qty: value}

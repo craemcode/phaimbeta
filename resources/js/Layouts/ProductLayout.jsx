@@ -47,8 +47,8 @@ const [showFlash,setShowFlash] = useState(true)
                     
                     <SidebarNavLink
                     as='button'
-                    href={route('product.restock',stock.id)}
-                    active={route().current('product.restock',{stock:stock.id})}>
+                    href={route('product.available_to_restock',stock.id)}
+                    active={route().current('product.available_to_restock',{stock:stock.id})}>
                         Restock
                     </SidebarNavLink>
 

@@ -55,7 +55,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/product/{product}/info',[ProductController::class, 'show'])->name('product.show');
 
     //restock route
-    Route::get('stock/{stock}/restock',[RestockController::class, 'index'])->name('product.restock');
+    Route::get('stock/{stock}/restock',[RestockController::class, 'index'])->name('product.available_to_restock');
+    Route::post('stock/make_restock',[RestockController::class, 'store'])->name('products.restock');
     
     //routes for making sales and viewing sales data
     Route::post('/stocks/make_sale',[SaleController::class, 'store'])->name('products.sell');

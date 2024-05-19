@@ -9,7 +9,7 @@ use Inertia\Inertia;
 
 class RestockController extends Controller
 {
-    //
+    //should show all the restocks that have happened. coming soon.
     public function index(Stock $stock)
     {
         $stock_id = $stock->id;
@@ -21,4 +21,10 @@ class RestockController extends Controller
             'products'=>$products, 
             'stock'=>$stock->only('id','name')]);
         }
+
+    //function to create a restock
+    public function store(Request $request)
+    {
+        dd($request);
+    }
 }

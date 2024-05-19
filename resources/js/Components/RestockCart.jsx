@@ -66,7 +66,7 @@ export default function RestockCart(props) {
                             </span>
                         </div>
                         <Link
-                            href={route("products.sell")}
+                            href={route("products.restock")}
                             as="button"
                             method="post"
                             preserveState={false}
