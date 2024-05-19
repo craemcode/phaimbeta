@@ -6,13 +6,20 @@ export default function RestockCartItem({product,onRemove,updateTotal}) {
     updateTotal()
 
     const handle_prop_change = (propertyName,newValue)=>{
-        
-        
-            setProperty(prevState => ({
-                ...prevState,
-                [propertyName]: newValue,
-              }));
+               
+            setProperty(prevState => (
+              {...prevState, [propertyName]: newValue}));
         }
+    const create_batch_no_property = (product) => {
+          if (!Object.hasOwnProperty('batch_no')) {
+              Object.defineProperty(product, 'batch_no', {
+                  value: 0
+              });
+          }
+      };
+
+      create_batch_no_property(product)
+
        
       
   return (

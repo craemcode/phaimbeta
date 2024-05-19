@@ -12,12 +12,11 @@ export default function RestockCart(props) {
       let localtot =products.reduce((accumulator, current)=> accumulator+current.buying_price*current.qty,0)
       setTotalRestock(localtot)
     }
-      
-    const create_batch_no_property = (product)=>{
-        Object.defineProperty(product, 'batch_no', {
-            value: 0
-          })
-    }
+     
+    //create batch number__not working yet.
+   
+    
+    //create quantity to restock.
   
   
     return (
@@ -29,7 +28,6 @@ export default function RestockCart(props) {
                         products.map((product) => (
                             
                             <div key={product.id}>
-                                {create_batch_no_property(product)}
                                 <RestockCartItem
                                     product={product}
                                     updateTotal={updateTotal}
