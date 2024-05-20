@@ -58,7 +58,7 @@ export default function RestockCartItem({product,onRemove,updateTotal,setCartIte
         </span>
       </div>
       <div className=' mt-4'>Ksh. <span className='font-bold text-lg'>{product.buying_price * product.qty}</span></div>
-    {console.log(product)}
+   
     </div>
   )
 }

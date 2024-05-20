@@ -11,16 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sold_products', function (Blueprint $table) {
+        Schema::create('restocked_products', function (Blueprint $table) {
             $table->id();
             $table->foreignId('product_id')->constrained(
-                table:'products', indexName: 'products_id'
+                table:'products', indexName: 'product_id'
             );
-            $table->foreignId('sales_id')->constrained(
-                table:'sales', indexName: 'sales_id'
+            $table->foreignId('restock_id')->constrained(
+                table:'restocks', indexName:'restocks_id'
             );
             $table->integer('product_quantity');
-            $table->integer('product_selling_price');
+            $table->integer('product_buying_price');
+            $table->string('product_batch_number');
             $table->timestamps();
         });
     }
@@ -30,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sold_products');
+        Schema::dropIfExists('restocked_products');
     }
 };

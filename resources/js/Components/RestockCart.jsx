@@ -11,7 +11,7 @@ export default function RestockCart({cartItems,onRemove,setCartItems}) {
     const updateTotal = ()=>{
       let localtot =cartItems.reduce((accumulator, current)=> accumulator+current.buying_price*current.qty,0)
       setTotalRestock(localtot)
-      //setCartItems((oldItems)=>[...oldItems.map(item => item.id === id ? {...item}:{})])
+      
     }
      
   

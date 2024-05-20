@@ -6,7 +6,6 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import ProductLayout from "@/Layouts/ProductLayout";
 import { Head, usePage } from "@inertiajs/react";
 import StockTable from "@/Components/StockTable";
-import SalesCart from "@/Components/SalesCart";
 import RestockCart from "@/Components/RestockCart";
 
 
