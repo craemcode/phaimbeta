@@ -16,12 +16,12 @@ export default function RestockDashboard(props) {
     //function for adding to cart
     const onAdd = (product) => {
         const exist = cartItems.find(x=>x.id === product.id);
-        
+        // 
         if (exist){
-            setCartItems.map((x)=>
-                x.id === product.id ? {...exist,qty: exist.qty+1}: x
+            setCartItems((x)=>
+                [...x.map(item=> item.id === product.id ? {...item, qty: parseInt(parseInt(item.qty) + 1)}: item )])
 
-            )
+            
         }else{
             setCartItems([...cartItems, {...product, qty: 1}])
         }
@@ -69,7 +69,7 @@ export default function RestockDashboard(props) {
                         }
                     </div>
                     <div className=" bg-gray-100 shadow-md border rounded-md self-stretch mx-4 px-4 w-1/4">
-                        <RestockCart onRemove={onRemove} cartItems = {cartItems}>
+                        <RestockCart onRemove={onRemove} cartItems = {cartItems} setCartItems= {setCartItems}>
 
                         </RestockCart>
                     </div>

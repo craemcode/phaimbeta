@@ -58,7 +58,7 @@ export default function CartItem({product,onRemove,updateTotal}) {
             </span>
           </div>
         <div className=' mt-4'>Ksh. <span className='font-bold text-lg'>{cartObject.selling_price * cartObject.qty}</span></div>
-
+    {console.log(product)}
 </div>
   )
 }
