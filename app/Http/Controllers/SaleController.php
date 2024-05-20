@@ -39,12 +39,14 @@ class SaleController extends Controller
 
         //sale first function...creates a query for each product
         for ($i=0;$i<count($data);$i++){
+            //create an array for storing the sales data
             $saleData = [
                 'product_id' => $data[$i]['id'],
                 'sales_id' =>$sale_id,
                 'product_quantity' =>$data[$i]['qty'],
                 'product_selling_price' =>$data[$i]['selling_price'],
             ];
+            //update amount in stock...can we do this after the db is successful.
             $amountinstock = $data[$i]['amount'] - $data[$i]['qty'];
             DB::table('sold_products')->insert($saleData);
             DB::table('products')

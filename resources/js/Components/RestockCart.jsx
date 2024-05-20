@@ -2,22 +2,18 @@ import React, { useState } from 'react'
 import RestockCartItem from './RestockCartItem'
 import { Link } from '@inertiajs/react'
 
-export default function RestockCart(props) {
-    const products = props.cartItems
-    const total = products.reduce((accumulator, current)=> accumulator+current.buying_price*current.qty,0)
+export default function RestockCart({cartItems,onRemove,setCartItems}) {
+    const new_products = []
+    const total = cartItems.reduce((accumulator, current)=> accumulator+current.buying_price*current.qty,0)
     const [totalRestock,setTotalRestock] = useState(total)
   
     //update total for the salescart
     const updateTotal = ()=>{
-      let localtot =products.reduce((accumulator, current)=> accumulator+current.buying_price*current.qty,0)
+      let localtot =cartItems.reduce((accumulator, current)=> accumulator+current.buying_price*current.qty,0)
       setTotalRestock(localtot)
-    }
       
-    const create_batch_no_property = (product)=>{
-        Object.defineProperty(product, 'batch_no', {
-            value: 0
-          })
     }
+     
   
   
     return (
@@ -25,15 +21,15 @@ export default function RestockCart(props) {
             <div className="flex flex-col justify-between pt-2 pb-4">
                 <div className="grow">
                     <h3 className="font-bold text-lg mb-5 ">Restock Cart</h3>
-                    {Object.keys(products).length ? (
-                        products.map((product) => (
+                    {Object.keys(cartItems).length ? (
+                        cartItems.map((product) => (
                             
                             <div key={product.id}>
-                                {create_batch_no_property(product)}
                                 <RestockCartItem
+                                    setCartItems={setCartItems}
                                     product={product}
-                                    updateTotal={updateTotal}
-                                    onRemove={props.onRemove}
+                                    updateTotal={()=>updateTotal()}
+                                    onRemove={onRemove}
                                 ></RestockCartItem>
                             </div>
                         ))
@@ -53,11 +49,11 @@ export default function RestockCart(props) {
                                     d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"
                                 />
                             </svg>
-                            No products in the cart
+                            No cartItems in the cart
                         </p>
                     )}
                 </div>
-                {products.length ? (
+                {cartItems.length ? (
                     <div className="flex flex-col">
                         <div className="my-3">
                             Total Restock: Ksh.{" "}
@@ -66,18 +62,18 @@ export default function RestockCart(props) {
                             </span>
                         </div>
                         <Link
-                            href={route("products.sell")}
+                            href={route("products.restock")}
                             as="button"
                             method="post"
                             preserveState={false}
-                            data={products}
+                            data={cartItems}
                             className="bg-blue-700 font-bold rounded-sm p-2 mt-2 text-white"
                         >
                             Make Restock
                         </Link>
                     </div>
                 ) : (
-                    <p className="text-center flex mx-auto text-sm w-fit p-2 text-blue-900 rounded-md bg-blue-100 shadow border border-blue-800">
+                    <div className="text-center flex mx-auto text-sm w-fit p-2 text-blue-900 rounded-md bg-blue-100 shadow border border-blue-800">
                         <div>
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -95,11 +91,11 @@ export default function RestockCart(props) {
                         </svg>
                         </div>
                         <div>
-                          Add products to the cart by clicking them
+                          Add cartItems to the cart by clicking them
                         </div>
                         
                         
-                    </p>
+                    </div>
                 )}
             </div>
         </aside>

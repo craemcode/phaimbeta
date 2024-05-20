@@ -71,7 +71,7 @@ export default function SalesCart(props) {
                       </Link>
                   </div>
               ) : (
-                  <p className="text-center flex mx-auto text-sm w-fit p-2 text-blue-900 rounded-md bg-blue-100 shadow border border-blue-800">
+                  <div className="text-center flex mx-auto text-sm w-fit p-2 text-blue-900 rounded-md bg-blue-100 shadow border border-blue-800">
                       <div>
                       <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -93,7 +93,7 @@ export default function SalesCart(props) {
                       </div>
                       
                       
-                  </p>
+                  </div>
               )}
           </div>
       </aside>
