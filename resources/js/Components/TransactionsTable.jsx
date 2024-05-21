@@ -4,13 +4,13 @@ import { useTable,useBlockLayout, useFlexLayout, useGlobalFilter, usePagination 
 import GlobalFilter from "./GlobalFilter";
 import PaginationTable from "./PaginationTable";
 
-export default function SalesTable({sales,stock_id}) {
-    const data = useMemo(()=>sales,sales)
+export default function TransactionsTable({transactions,stock_id,link}) {
+    const data = useMemo(()=>transactions,transactions)
     
     
     //format the dates
-    sales.forEach((sale)=>(
-         sale.created_at = new Date(sale.created_at).toDateString()
+    transactions.forEach((transaction)=>(
+         transaction.created_at = new Date(transaction.created_at).toDateString()
          
     ))
     
@@ -21,15 +21,15 @@ export default function SalesTable({sales,stock_id}) {
     
     const columns = useMemo(()=>[
       {
-          Header: 'Sale ID',
+          Header: 'Transaction ID',
           accessor: 'id',
       },
          
       {
-          Header: 'Date of Sale',
+          Header: 'Date of Transaction',
           accessor: 'created_at',
       },
-  ], sales)
+  ], transactions)
   
   //things stolen from ken
   const {
@@ -83,7 +83,7 @@ export default function SalesTable({sales,stock_id}) {
                     return (
                         <tr {...row.getRowProps()}
                         className='border-b transition duration-300 ease-in-out hover:bg-neutral-100 hover:cursor-pointer'
-                        onClick={()=>{router.get(route('sale.show', [stock_id,row.original.id]))}} >
+                        onClick={()=>{router.get(route(link, [stock_id,row.original.id]))}} >
                             {row.cells.map(cell => {
                                 return <td {...cell.getCellProps()} className='px-2 py-2'>
                                     {cell.render('Cell')}

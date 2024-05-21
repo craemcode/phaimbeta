@@ -71,7 +71,7 @@ class SaleController extends Controller
                             ->where('sales_id',$sale->id)->get();
         
             
-        return Inertia::render('Records/Sold_products',
+        return Inertia::render('Records/SoldProducts',
                 ['sold_products'=>$sold_products,
                 'sale'=>$sale,
                 'stock'=>$stock->only('id','name')]

@@ -3,7 +3,7 @@ import React from 'react'
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head } from "@inertiajs/react";
 
-export default function Sold_products(props) {
+export default function SoldProducts(props) {
   
     return (
     <AuthenticatedLayout

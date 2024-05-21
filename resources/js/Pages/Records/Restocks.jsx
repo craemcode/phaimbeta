@@ -1,13 +1,15 @@
-import TransactionsTable from '@/Components/TransactionsTable'
 import React from 'react'
+import TransactionsTable from '@/Components/TransactionsTable'
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import ProductLayout from "@/Layouts/ProductLayout";
 import { Head } from "@inertiajs/react";
 
-export default function Sales(props) {
-    const sales = props.sales
+
+export default function Restocks(props) {
+    const restocks = props.restocks
     const stock = props.stock
-    const link = 'sale.show'
+    const link = 'restock.show'
+
   return (
     <AuthenticatedLayout
     user={props.auth.user}
@@ -18,11 +20,10 @@ export default function Sales(props) {
         </h2>
     }
     >
-    <Head title={props.stock.name} />
-    <ProductLayout stock={stock} flash={props.flash}>
-                <TransactionsTable transactions={sales} stock_id={stock.id} link={link}/>
-    </ProductLayout>
+        <Head title={props.stock.name}/>
+        <ProductLayout stock={stock} stock_id={stock.id} flash={props.flash}>
+            <TransactionsTable transactions={restocks} stock_id={stock.id} link={link}/>
+        </ProductLayout>
     </AuthenticatedLayout>
   )
 }
-//remeber to have the sales object reflect this....

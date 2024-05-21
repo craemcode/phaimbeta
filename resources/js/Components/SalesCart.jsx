@@ -2,14 +2,14 @@ import React, { useState } from 'react'
 import CartItem from './CartItem'
 import { Link } from '@inertiajs/react'
 
-export default function SalesCart(props) {
-  const products = props.cartItems
-  const total = products.reduce((accumulator, current)=> accumulator+current.selling_price*current.qty,0)
+export default function SalesCart(cartItems,onRemove,setCartItems) {
+  const new_products = []
+  const total = cartItems.reduce((accumulator, current)=> accumulator+current.selling_price*current.qty,0)
   const [totalSales,setTotalSales] = useState(total)
 
   //update total for the salescart
   const updateTotal = ()=>{
-    let localtot =products.reduce((accumulator, current)=> accumulator+current.selling_price*current.qty,0)
+    let localtot =cartItems.reduce((accumulator, current)=> accumulator+current.selling_price*current.qty,0)
     setTotalSales(localtot)
   }
     
@@ -21,13 +21,14 @@ export default function SalesCart(props) {
           <div className="flex flex-col justify-between pt-2 pb-4">
               <div className="grow">
                   <h3 className="font-bold text-lg mb-5 ">Sales Cart</h3>
-                  {Object.keys(products).length ? (
-                      products.map((product) => (
+                  {Object.keys(cartItems).length ? (
+                      cartItems.map((product) => (
                           <div key={product.id}>
                               <CartItem
+                                  setCartItems={setCartItems}
                                   product={product}
-                                  updateTotal={updateTotal}
-                                  onRemove={props.onRemove}
+                                  updateTotal={()=>updateTotal()}
+                                  onRemove={onRemove}
                               ></CartItem>
                           </div>
                       ))
@@ -51,7 +52,7 @@ export default function SalesCart(props) {
                       </p>
                   )}
               </div>
-              {products.length ? (
+              {cartItems.length ? (
                   <div className="flex flex-col">
                       <div className="my-3">
                           Total Sale: Ksh.{" "}
@@ -64,7 +65,7 @@ export default function SalesCart(props) {
                           as="button"
                           method="post"
                           preserveState={false}
-                          data={products}
+                          data={cartItems}
                           className="bg-blue-700 font-bold rounded-sm p-2 mt-2 text-white"
                       >
                           Make Sale
