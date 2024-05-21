@@ -23,6 +23,18 @@ class RestockController extends Controller
             'products'=>$products, 
             'stock'=>$stock->only('id','name')]);
         }
+    
+     //show restocks on the front end
+    public function list(Stock $stock){
+        $stock_id = $stock->id;
+        $restocks = Restock::where('stock_id', $stock_id)->orderBy('created_at','desc')->get();
+
+        return Inertia::render('Records/Restocks',
+        [
+            'restocks'=>$restocks,
+            'stock'=>$stock->only('id','name')
+        ]);
+    }
 
     //function to create a restock
     public function store(Request $request)
@@ -60,4 +72,20 @@ class RestockController extends Controller
         }
         return to_route('product.available_to_restock',$stock_id)->with('success','Restock Successful');
     }
+
+    public function show(Stock $stock, Restock $restock){
+        $restocked_products = DB::table('restocked_products')
+                            ->join('products','restocked_products.product_id','=','products.id')
+                            //select all rows in restocked products and product name
+                            ->select('restocked_products.*','products.name','products.units')
+                            ->where('restock_id',$restock->id)->get();
+        
+            
+        return Inertia::render('Records/RestockedProducts',
+                ['restocked_products'=>$restocked_products,
+                'restock'=>$restock,
+                'stock'=>$stock->only('id','name')]
+            );
+    }
+
 }

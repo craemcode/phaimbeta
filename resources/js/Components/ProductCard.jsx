@@ -3,7 +3,7 @@ import React from 'react'
 function ProductCard({sold_products,sale,user}) {
   
   const sale_date = new Date(sale.created_at)
-
+  console.log(typeof(sold_products))
   
   const total = sold_products.reduce((accumulator, current)=> accumulator+current.product_selling_price*current.product_quantity,0)
   
