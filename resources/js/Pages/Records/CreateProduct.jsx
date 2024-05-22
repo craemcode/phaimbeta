@@ -17,10 +17,7 @@ function CreateProduct(props) {
     
     productName:'',
     //count homogenously...if you buy capsules, record capsules. can be adapted for larger shops.
-    productAmount: '',
     productUnit: '',
-    productBuyingPrice: '',
-    productSellingPrice: '',
     
 });
   
@@ -45,6 +42,7 @@ function CreateProduct(props) {
     
     >
         <Head title={props.stock.name}/>
+        <ProductLayout stock={props.stock} flash={props.flash}>
         
         <div className="min-h-screen flex flex-col items-center pt-6 sm:pt-0 bg-[url('/img/background.svg')]">
 
@@ -85,51 +83,6 @@ function CreateProduct(props) {
 
                     <InputError message={errors.productUnit} className="mt-2" />
                 </div>
-                <div className="mt-4">
-                    <InputLabel htmlFor="number" value="Product Amount (Amount Instock)" />
-
-                    <NumberInput
-                        id="productAmount"
-                        type="number"
-                        name="productAmount"
-                        value={data.productAmount}
-                        className="mt-1 block w-full"
-                        
-                        onChange={(e) => setData('productAmount', e.target.value)}
-                    />
-
-                    <InputError message={errors.productAmount} className="mt-2" />
-                </div>
-                <div className="mt-4">
-                    <InputLabel htmlFor="number" value="Product Buying Price" />
-
-                    <NumberInput
-                        id="productBuyingPrice"
-                        type="number"
-                        name="productBuyingPrice"
-                        value={data.productBuyingPrice}
-                        className="mt-1 block w-full"
-                        
-                        onChange={(e) => setData('productBuyingPrice', e.target.value)}
-                    />
-
-                    <InputError message={errors.productBuyingPrice} className="mt-2" />
-                </div>
-                <div className="mt-4">
-                    <InputLabel htmlFor="number" value="Product Selling Price" />
-
-                    <NumberInput
-                        id="productSellingPrice"
-                        type="number"
-                        name="productSellingPrice"
-                        value={data.productSellingPrice}
-                        className="mt-1 block w-full"
-                        
-                        onChange={(e) => setData('productSellingPrice', e.target.value)}
-                    />
-
-                    <InputError message={errors.productSellingPrice} className="mt-2" />
-                </div>
                 
 
                 <div className="flex items-center justify-end mt-4">
@@ -140,7 +93,7 @@ function CreateProduct(props) {
             </form>
         </div>
         </div>
-        
+        </ProductLayout> 
     </AuthenticatedLayout>
         
   )

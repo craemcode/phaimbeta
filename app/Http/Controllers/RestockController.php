@@ -16,7 +16,13 @@ class RestockController extends Controller
     {
         $stock_id = $stock->id;
 
-        $products = Product::where('stock_id', $stock_id)->get();
+        //$products = Product::where('stock_id', $stock_id)->get();
+        $products = DB::table('restocked_products')
+                            ->join('products','restocked_products.product_id','=','products.id')
+                            ->select('restocked_products.*','products.name','products.units')
+                            ->where('products.stock_id','=', $stock_id)
+                            ->get();
+       
        
        
         return Inertia::render('Records/RestockDashboard',[
@@ -39,38 +45,79 @@ class RestockController extends Controller
     //function to create a restock
     public function store(Request $request)
     {
+        
+        
+        
+        
         //extract the array to a variable
         $data = $request->all();
 
         //create a new restock
         $restock = new Restock;
-        $stock_id = $data[0]['stock_id'];
-        $restock->stock_id = $stock_id;
-        $restock->save();
 
-        //get the restock id
-        $restock_id = $restock->id;
+        //if you make a restock from the items in stock table, there will be trouble because the request will not have a 
+        // stock id variable. in that case, we can use the product's table to get the id because a product belongs to a specific stock.
 
-        //create a query for each product of the restock.
-        for ($i=0;$i<count($data);$i++){
-            //create an array for storing the restock data
-            $restockData = [
-            'product_id' =>$data[$i]['id'],
-            'restock_id' =>$restock_id,
-            'product_quantity' =>$data[$i]['qty'],
-            'product_buying_price' =>$data[$i]['buying_price'],
-            'product_batch_number'=>$data[$i]['batch_no'],
-            ];
-            //update amount in stock...can we do this after the db is successful.
-            $amountinstock = $data[$i]['amount'] + $data[$i]['qty'];
+        //the opposite is also true. Use dd(request to understand)
+        if(array_key_exists('stock_id',$data[0])){
             
-            DB::table('restocked_products')->insert($restockData);
-            DB::table('products')
-                ->where('id',$data[$i]['id'])
-                ->update(['amount'=>$amountinstock]);
+            $stock_id = $data[0]['stock_id'];
+
+            $restock->stock_id = $stock_id;
+            $restock->save();
+
+            //get the restock id
+            $restock_id = $restock->id;
+
+             //create a query for each product of the restock.
+             for ($i=0;$i<count($data);$i++){
+                    //create an array for storing the restock data
+                $restockData = [
+                    'product_id' =>$data[$i]['id'],
+                    'restock_id' =>$restock_id,
+                    'quantity' =>$data[$i]['qty'],
+                    'restocked_quantity' => $data[$i]['qty'],
+                    'buying_price' =>$data[$i]['buying_price'],
+                    'selling_price' =>$data[$i]['selling_price'],
+                    'batch_number'=>$data[$i]['batch_no'],
+                    ];
+                    DB::table('restocked_products')->insert($restockData);
+                }
+             }else{
+                $product_id = $data[0]['product_id'];
+
+                $product = DB::table('products')
+                        ->where('id',$product_id)->first();
+        
+                $stock_id = $product->stock_id;
+                $restock->stock_id = $stock_id;
+                $restock->save();
+
+                //get the restock id
+                $restock_id = $restock->id;
+
+                //create a query for each product of the restock.
+                for ($i=0;$i<count($data);$i++){
+                    //create an array for storing the restock data
+                    $restockData = [
+                    'product_id' =>$data[$i]['product_id'],
+                    'restock_id' =>$restock_id,
+                    'quantity' =>$data[$i]['qty'],
+                    'restocked_quantity' => $data[$i]['qty'],
+                    'buying_price' =>$data[$i]['buying_price'],
+                    'selling_price' =>$data[$i]['selling_price'],
+                    'batch_number'=>$data[$i]['batch_no'],
+                    ];
+                    DB::table('restocked_products')->insert($restockData);
+                }
+        }      
+            
+            
+        
+            
                          
-        }
-        return to_route('product.available_to_restock',$stock_id)->with('success','Restock Successful');
+        
+        return to_route('product.products_in_stock',$stock_id)->with('success','Restock Successful');
     }
 
     public function show(Stock $stock, Restock $restock){

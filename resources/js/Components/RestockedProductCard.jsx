@@ -4,7 +4,7 @@ export default function RestockedProductCard({restocked_products,restock,user}) 
   
   //date of the restock
   const restock_date = new Date(restock.created_at)
-  const total = restocked_products.reduce((accumulator,current)=>accumulator+current.product_buying_price*current.product_quantity,0)
+  const total = restocked_products.reduce((accumulator,current)=>accumulator+current.buying_price*current.quantity,0)
   
   
   
@@ -24,23 +24,23 @@ export default function RestockedProductCard({restocked_products,restock,user}) 
 
                 <div className=''>
                 
-                <span className='text-sm'>Batch No.</span> <span className='font-bold text-lg'>{product.product_batch_number} </span> 
+                <span className='text-sm'>Batch No.</span> <span className='font-bold text-lg'>{product.batch_number} </span> 
                 </div>
 
                 <div className=''>
 
-                    <span className='font-bold text-lg'>{product.product_quantity} </span> <span className='text-sm'>{product.units}</span>
+                    <span className='font-bold text-lg'>{product.restocked_quantity} </span> <span className='text-sm'>{product.units}</span>
                 </div>
                 <div className=''>
                     <span className='text-sm'>Ksh.</span>
-                    <span className='font-bold text-lg ml-1'>{product.product_quantity * product.product_buying_price}</span>
+                    <span className='font-bold text-lg ml-1'>{product.quantity * product.buying_price}</span>
                 </div>
             </div>
         ))
 
     }
             <div className='bg-blue-800 shadow-md rounded-lg text-white px-3 py-1'>
-                <span className='text-lg font-bold'>Total Sale:</span> <span className='text-sm'>Ksh. </span><span className='font-bold text-lg'>{total.toLocaleString('en-us')}</span>
+                <span className='text-lg font-bold'>Total Restock Spend:</span> <span className='text-sm'>Ksh. </span><span className='font-bold text-lg'>{total.toLocaleString('en-us')}</span>
             </div>
 
 

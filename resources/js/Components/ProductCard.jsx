@@ -3,9 +3,9 @@ import React from 'react'
 function ProductCard({sold_products,sale,user}) {
   
   const sale_date = new Date(sale.created_at)
-  console.log(typeof(sold_products))
   
-  const total = sold_products.reduce((accumulator, current)=> accumulator+current.product_selling_price*current.product_quantity,0)
+  
+  const total = sold_products.reduce((accumulator, current)=> accumulator+current.selling_price*current.quantity,0)
   
   
   
@@ -23,14 +23,19 @@ function ProductCard({sold_products,sale,user}) {
             <div className='text-lg'>
                 {product.name}
             </div>
+
+            <div className=''>
+                
+                <span className='text-sm'>Batch No.</span> <span className='font-bold text-lg'>{product.batch_number} </span> 
+                </div>
            
             <div className=''>
                 
-               <span className='font-bold text-lg'>{product.product_quantity} </span> <span className='text-sm'>{product.units}</span>
+               <span className='font-bold text-lg'>{product.quantity} </span> <span className='text-sm'>{product.units}</span>
             </div>
             <div className=''>
                  <span className='text-sm'>Ksh.</span> 
-               <span className='font-bold text-lg ml-1'>{product.product_quantity * product.product_selling_price}</span>
+               <span className='font-bold text-lg ml-1'>{(product.quantity * product.selling_price).toLocaleString()}</span>
             </div>
             
         </div>

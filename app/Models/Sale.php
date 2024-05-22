@@ -10,6 +10,10 @@ class Sale extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'stock_id',
+    ];
+
     public function products(): BelongsToMany
     {
         return $this->belongsTomany(Product::class);

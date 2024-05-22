@@ -9,6 +9,12 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Stock extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'location',
+        'user_id',
+    ];
      /**
      * Get the prdocuts from the stock.
      */

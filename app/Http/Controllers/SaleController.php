@@ -30,7 +30,15 @@ class SaleController extends Controller
         
         //create a new sale
         $sale = new Sale;
-        $stock_id =  $data[0]['stock_id'];
+        $restock_id =  $data[0]['restock_id'];
+
+        $restock = DB::table('restocks')
+                    ->where('id',$restock_id)->first();
+        
+        $stock_id = $restock->stock_id;
+
+
+        
         $sale->stock_id = $stock_id;
         $sale->save();
         
@@ -41,17 +49,18 @@ class SaleController extends Controller
         for ($i=0;$i<count($data);$i++){
             //create an array for storing the sales data
             $saleData = [
-                'product_id' => $data[$i]['id'],
+                'item_id' => $data[$i]['id'],
+                'product__id'=>$data[$i]['product_id'],
                 'sales_id' =>$sale_id,
-                'product_quantity' =>$data[$i]['qty'],
-                'product_selling_price' =>$data[$i]['selling_price'],
+                'quantity' =>$data[$i]['qty'],
+                'selling_price' =>$data[$i]['selling_price'],
             ];
             //update amount in stock...can we do this after the db is successful.
-            $amountinstock = $data[$i]['amount'] - $data[$i]['qty'];
+            $amountinstock = $data[$i]['quantity'] - $data[$i]['qty'];
             DB::table('sold_products')->insert($saleData);
-            DB::table('products')
+            DB::table('restocked_products')
                 ->where('id',$data[$i]['id'])
-                ->update(['amount'=>$amountinstock]);
+                ->update(['quantity'=>$amountinstock]);
         }
 
         //once the sales are done, we need to call update on product amounts.
@@ -65,9 +74,10 @@ class SaleController extends Controller
 
     public function show(Stock $stock, Sale $sale){
         $sold_products = DB::table('sold_products')
-                            ->join('products','sold_products.product_id','=','products.id')
+                            ->join('products','sold_products.product__id','=','products.id')//NB: The foreign key constraint for product id has double underscore.
+                            ->join('restocked_products','sold_products.item_id','=','restocked_products.id')
                             //select all rows in sold products and product name
-                            ->select('sold_products.*','products.name','products.units')
+                            ->select('sold_products.*','products.name','products.units','restocked_products.batch_number')
                             ->where('sales_id',$sale->id)->get();
         
             

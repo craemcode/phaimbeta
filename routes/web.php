@@ -45,6 +45,10 @@ Route::middleware('auth')->group(function () {
     Route::get('stock/{stock}/product/home',[ProductController::class, 'index'])->name('products.show');
     Route::get('stock/{stock}/product/create',[ProductController::class, 'create'])->name('product.create');
     
+    //this route is special for the restocks page. Useful when you want to restock something not in stock.
+    Route::get('stock/{stock}/product/products_only',[ProductController::class, 'list'])->name('products.show_products_only');
+
+    
     // Route to bulk import products
     Route::post('stock/{stock}/products/import',[ProductController::class,'import'])->name('products.bulk.import');
 
@@ -55,7 +59,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/product/{product}/info',[ProductController::class, 'show'])->name('product.show');
 
     //restock route
-    Route::get('stock/{stock}/restock',[RestockController::class, 'index'])->name('product.available_to_restock');
+    Route::get('stock/{stock}/restock',[RestockController::class, 'index'])->name('product.products_in_stock');
     Route::get('stock/{stock}/restocks',[RestockController::class, 'list'])->name('restocks.list');
     Route::post('stock/make_restock',[RestockController::class, 'store'])->name('products.restock');
     Route::get('stock/{stock}/restock/{restock}/show',[RestockController::class,'show'])->name('restock.show');

@@ -9,24 +9,25 @@ export default function ProductsDashboard(props) {
     const { stock, flash, products } = usePage().props;
     const [cartItems, setCartItems] = useState([]);
     //function for adding to cart
+    
     const onAdd = (product) => {
         const exist = cartItems.find(x=>x.id === product.id);
         // 
         if (exist){
             setCartItems((x)=>
-                [...x.map(item=> item.id === product.id ? {...item, qty: parseInt(parseInt(item.qty) + 1)}: item )])
+                [...x.map(item=> x.id === product.id ? {...item, qty: parseInt(parseInt(item.qty) + 1)}: item )])
 
             
         }else{
             setCartItems([...cartItems, {...product, qty: 1}])
         }
     }
-
+    
     //function for removing items from the cart
     const onRemove = (product)=>{
         //find cart item with matching id
         const item = cartItems.find((x)=>x.id===product.id)
-        setCartItems(cartItems.filter((x)=>x.id !== product.id))
+        setCartItems(cartItems.filter((x)=>  x.id !== product.id))
     }
 
 

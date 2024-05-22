@@ -2,6 +2,7 @@ import React from 'react'
 import RestockedProductCard from '@/Components/RestockedProductCard'
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head } from "@inertiajs/react";
+import ProductLayout from '@/Layouts/ProductLayout';
 
 export default function RestockedProducts(props) {
   return (
@@ -15,12 +16,14 @@ export default function RestockedProducts(props) {
     }
 >
     <Head title={props.stock.name} />
+    <ProductLayout stock={props.stock} flash={props.flash}>
     <div className=" h-screen flex justify-evenly bg-[url('/img/protruding-squares.svg')]">
         <div className=''>
             <RestockedProductCard restocked_products={props.restocked_products} user={props.auth.user} restock={props.restock} stock_id={props.stock.id}/> 
         </div>
 
-        </div>
+    </div>
+    </ProductLayout>
         </AuthenticatedLayout>
   )
 }

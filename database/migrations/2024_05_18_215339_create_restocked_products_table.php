@@ -11,6 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
+
+        // This table conains all items bought during a restock. Also, it contains
+        // all items in stock.
+
         Schema::create('restocked_products', function (Blueprint $table) {
             $table->id();
             $table->foreignId('product_id')->constrained(
@@ -19,9 +23,11 @@ return new class extends Migration
             $table->foreignId('restock_id')->constrained(
                 table:'restocks', indexName:'restocks_id'
             );
-            $table->integer('product_quantity');
-            $table->integer('product_buying_price');
-            $table->string('product_batch_number');
+            $table->integer('restocked_quantity');
+            $table->integer('quantity');
+            $table->integer('buying_price');
+            $table->integer('selling_price');
+            $table->string('batch_number');
             $table->timestamps();
         });
     }

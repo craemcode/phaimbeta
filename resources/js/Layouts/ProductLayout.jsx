@@ -40,14 +40,16 @@ const [showFlash,setShowFlash] = useState(true)
                     
                     <SidebarNavLink
                     as='button'
-                    href={route('import.products',stock.id)}
-                    active={route().current('import.products',{stock:stock.id})}>
+                    href={/* route('import.products',stock.id) */ null }
+                    active={
+                        route().current('import.products',{stock:stock.id})
+                    }>
                         Bulk Import (Excel)
                     </SidebarNavLink>
                     
                     <SidebarNavLink
                     as='button'
-                    href={route('product.available_to_restock',stock.id)}
+                    href={route('product.products_in_stock',stock.id)}
                     active={route().current('product.available_to_restock',{stock:stock.id})}>
                         Restock
                     </SidebarNavLink>

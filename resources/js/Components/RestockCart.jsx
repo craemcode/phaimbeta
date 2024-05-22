@@ -2,10 +2,11 @@ import React, { useState } from 'react'
 import RestockCartItem from './RestockCartItem'
 import { Link } from '@inertiajs/react'
 
-export default function RestockCart({cartItems,onRemove,setCartItems}) {
-    const new_products = []
+export default function RestockCart({cartItems,onRemove,setCartItems,errors}) {
+   
     const total = cartItems.reduce((accumulator, current)=> accumulator+current.buying_price*current.qty,0)
     const [totalRestock,setTotalRestock] = useState(total)
+    
   
     //update total for the salescart
     const updateTotal = ()=>{
@@ -18,7 +19,7 @@ export default function RestockCart({cartItems,onRemove,setCartItems}) {
   
     return (
         <aside>
-            <div className="flex flex-col justify-between pt-2 pb-4">
+            <div className="flex flex-col justify-between pt-2 pb-4 ">
                 <div className="grow">
                     <h3 className="font-bold text-lg mb-5 ">Restock Cart</h3>
                     {Object.keys(cartItems).length ? (
@@ -30,6 +31,7 @@ export default function RestockCart({cartItems,onRemove,setCartItems}) {
                                     product={product}
                                     updateTotal={()=>updateTotal()}
                                     onRemove={onRemove}
+                                    errors={errors}
                                 ></RestockCartItem>
                             </div>
                         ))
@@ -58,7 +60,7 @@ export default function RestockCart({cartItems,onRemove,setCartItems}) {
                         <div className="my-3">
                             Total Restock: Ksh.{" "}
                             <span className="font-bold text-lg">
-                                {totalRestock}
+                                {totalRestock.toLocaleString('en-us')}
                             </span>
                         </div>
                         <Link

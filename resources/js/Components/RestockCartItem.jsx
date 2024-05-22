@@ -1,5 +1,6 @@
 import React,  { useState } from 'react'
 
+
 export default function RestockCartItem({product,onRemove,updateTotal,setCartItems}) {
     
     updateTotal()
@@ -33,9 +34,10 @@ export default function RestockCartItem({product,onRemove,updateTotal,setCartIte
         <span>
           <input
             name='qty'
+            id='qty'
             value={parseInt(product.qty)}
             onChange={(e) => { 
-              handle_prop_change('qty',parseInt(e.target.value)) 
+              handle_prop_change(e.target.name,parseInt(e.target.value)) 
               //updateTotal()
             }}
             className=" px-4  text-black-700  bg-inherit h-8 border-0 bg-slate-200 rounded-md focus:border-blue-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
@@ -57,7 +59,34 @@ export default function RestockCartItem({product,onRemove,updateTotal,setCartIte
           />
         </span>
       </div>
-      <div className=' mt-4'>Ksh. <span className='font-bold text-lg'>{product.buying_price * product.qty}</span></div>
+      
+      <div>
+        <span>
+          Buying Price:
+          <input
+            name='buying_price'
+            value={product.buying_price}
+            onChange={(e) => { handle_prop_change('buying_price', e.target.value) }}
+            className=" px-4  text-black-700  bg-inherit h-8 border-0 bg-slate-200 rounded-md focus:border-blue-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
+            type="number"
+            placeholder='Buying Price'
+          />
+        </span>
+      </div>
+      <div>
+        <span>
+          Selling Price:
+          <input
+            name='selling_price'
+            value={product.selling_price}
+            onChange={(e) => { handle_prop_change('selling_price', e.target.value) }}
+            className=" px-4  text-black-700  bg-inherit h-8 border-0 bg-slate-200 rounded-md focus:border-blue-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
+            type="number"
+            placeholder='Selling Price'
+          />
+        </span>
+      </div>
+      <div className=' mt-4'>Ksh. <span className='font-bold text-lg'>{(product.buying_price * product.qty).toLocaleString()}</span></div>
    
     </div>
   )

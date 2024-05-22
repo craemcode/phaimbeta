@@ -11,16 +11,22 @@ return new class extends Migration
      */
     public function up(): void
     {
+        /*
+        This table contains all items sold during a sale.
+         */
         Schema::create('sold_products', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('product_id')->constrained(
-                table:'products', indexName: 'products_id'
+            $table->foreignId('item_id')->constrained(
+                table:'restocked_products', indexName: 'item_id'
             );
             $table->foreignId('sales_id')->constrained(
                 table:'sales', indexName: 'sales_id'
             );
-            $table->integer('product_quantity');
-            $table->integer('product_selling_price');
+            $table->foreignId('product__id')->constrained(
+                table:'products',indexName: 'product__id'
+            );
+            $table->integer('quantity');
+            $table->integer('selling_price');
             $table->timestamps();
         });
     }

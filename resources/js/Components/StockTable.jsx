@@ -11,17 +11,22 @@ function StockTable({products,stock_id,onAdd}) {
   const columns = useMemo(()=>[
     {
         Header: 'Product Name',
-        width: 200,
+        width: 150,
         accessor: 'name',
     },
     {
         Header: 'Units',
-        width: 125,
+        width: 100,
         accessor: 'units',
     },
     {
+        Header: 'Batch No',
+        width: 100,
+        accessor: 'batch_number',
+    },
+    {
         Header: 'Amount Remaining',
-        accessor: 'amount',
+        accessor: 'quantity',
         width: 100,
     },
  
@@ -64,7 +69,7 @@ const {
         preGlobalFilteredRows={preGlobalFilteredRows}
         globalFilter={globalFilter}
         setGlobalFilter={setGlobalFilter} />
-        <div className='p-2 pb-0  rounded-lg flex flex-col items-center'>
+        <div className='p-2 pb-0  rounded-lg flex flex-col items-center overflow-auto'>
             <table {...getTableProps()} className="justify-self-center table text-sm text-left font-light" >
                 <thead>
                     {headerGroups.map(headerGroup=> (

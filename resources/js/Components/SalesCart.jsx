@@ -2,11 +2,11 @@ import React, { useState } from 'react'
 import CartItem from './CartItem'
 import { Link } from '@inertiajs/react'
 
-export default function SalesCart(cartItems,onRemove,setCartItems) {
+export default function SalesCart({cartItems,onRemove,setCartItems}) {
   const new_products = []
   const total = cartItems.reduce((accumulator, current)=> accumulator+current.selling_price*current.qty,0)
   const [totalSales,setTotalSales] = useState(total)
-
+   
   //update total for the salescart
   const updateTotal = ()=>{
     let localtot =cartItems.reduce((accumulator, current)=> accumulator+current.selling_price*current.qty,0)
@@ -57,7 +57,7 @@ export default function SalesCart(cartItems,onRemove,setCartItems) {
                       <div className="my-3">
                           Total Sale: Ksh.{" "}
                           <span className="font-bold text-lg">
-                              {totalSales}
+                              {totalSales.toLocaleString('en-us')}
                           </span>
                       </div>
                       <Link
