@@ -8,8 +8,8 @@ export default function CartItem({product,onRemove,updateTotal,setCartItems}) {
     
     const handle_prop_change = (propertyName,newValue)=>{
       
-      if(newValue < 0){
-        newValue = 0
+      if(newValue <= 0){
+        newValue = 1
       }
       
       if(newValue > product.quantity){

@@ -21,10 +21,10 @@ class RestockController extends Controller
                             ->join('products','restocked_products.product_id','=','products.id')
                             ->select('restocked_products.*','products.name','products.units')
                             ->where('products.stock_id','=', $stock_id)
+                            ->where('restocked_products.quantity','>',0)//only get items that are in stock
                             ->get();
        
-       
-       
+        
         return Inertia::render('Records/RestockDashboard',[
             'products'=>$products, 
             'stock'=>$stock->only('id','name')]);
@@ -133,6 +133,20 @@ class RestockController extends Controller
                 'restock'=>$restock,
                 'stock'=>$stock->only('id','name')]
             );
+    }
+
+    public function out_of_stock_list(Stock $stock){
+        $stock_id = $stock->id;
+        $out_of_stock_products = DB::table('restocked_products')
+                                ->join('products','restocked_products.product_id','=','products.id')
+                                ->select('restocked_products.*','products.name','products.units')
+                                ->where('products.stock_id','=', $stock_id)
+                                ->where('restocked_products.quantity','<=',0)//only get items that are in stock
+                                ->get();
+                                
+        return Inertia::render('Records/RestockDashboard',[
+            'products'=>$out_of_stock_products, 
+            'stock'=>$stock->only('id','name')]);
     }
 
 }

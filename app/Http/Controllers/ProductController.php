@@ -42,12 +42,10 @@ class ProductController extends Controller
         ->join('products','restocked_products.product_id','=','products.id')
         ->select('restocked_products.*','products.name','products.units')
         ->where('products.stock_id','=', $stock_id)
+        ->where('restocked_products.quantity','>',0)
         ->get();
 
-        //filter all the items that are out of stock.
-        $products = $products->filter(function($product){
-            return $product->quantity > 0;
-        })->values();
+        
         
         
        //$products = array_filter($products, "filter_zeros");

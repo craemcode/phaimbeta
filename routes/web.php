@@ -60,6 +60,7 @@ Route::middleware('auth')->group(function () {
 
     //restock route
     Route::get('stock/{stock}/restock',[RestockController::class, 'index'])->name('product.products_in_stock');
+    Route::get('stock/{stock}/out_of_stock',[RestockController::class, 'out_of_stock_list'])->name('product.products_out_of_stock');
     Route::get('stock/{stock}/restocks',[RestockController::class, 'list'])->name('restocks.list');
     Route::post('stock/make_restock',[RestockController::class, 'store'])->name('products.restock');
     Route::get('stock/{stock}/restock/{restock}/show',[RestockController::class,'show'])->name('restock.show');

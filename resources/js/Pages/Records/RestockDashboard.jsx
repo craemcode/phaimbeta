@@ -76,16 +76,25 @@ export default function RestockDashboard(props) {
                                 preserveState={false}
                                 className="bg-black font-bold rounded-md p-2 mt-2 text-gray-200"
                             >
-                                Show Products
+                                All Products
                             </Link>
                             <Link
                                 href={route("product.products_in_stock",stock.id)}
                                 as="button"
                                 method="get"
                                 preserveState={false}
-                                className="bg-black font-bold rounded-sm p-2 mt-2 text-gray-200"
+                                className="bg-black font-bold rounded-md p-2 mt-2 text-gray-200"
                             >
-                                Show Stocked Products
+                                Stocked Products
+                            </Link>
+                            <Link
+                                href={route("product.products_out_of_stock",stock.id)}
+                                as="button"
+                                method="get"
+                                preserveState={false}
+                                className="bg-red-700 font-bold rounded-md p-2 mt-2 text-gray-200"
+                            >
+                                Out-Stock Products
                             </Link>
                         </div>
 
