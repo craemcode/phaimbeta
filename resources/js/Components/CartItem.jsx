@@ -7,7 +7,15 @@ export default function CartItem({product,onRemove,updateTotal,setCartItems}) {
 
     
     const handle_prop_change = (propertyName,newValue)=>{
-               
+      
+      if(newValue < 0){
+        newValue = 0
+      }
+      
+      if(newValue > product.quantity){
+        newValue = product.quantity
+      }
+        
       setCartItems(oldItems => [...oldItems.map(item => item.id === product.id ?{...item,[propertyName]:newValue} :item)])
     }
       

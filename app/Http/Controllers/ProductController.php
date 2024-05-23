@@ -43,8 +43,14 @@ class ProductController extends Controller
         ->select('restocked_products.*','products.name','products.units')
         ->where('products.stock_id','=', $stock_id)
         ->get();
+
+        //filter all the items that are out of stock.
+        $products = $products->filter(function($product){
+            return $product->quantity > 0;
+        })->values();
         
-       
+        
+       //$products = array_filter($products, "filter_zeros");
        
         return Inertia::render('Records/ProductsDashboard',[
             'products'=>$products, 
