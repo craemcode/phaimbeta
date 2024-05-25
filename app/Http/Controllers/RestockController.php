@@ -141,7 +141,7 @@ class RestockController extends Controller
                                 ->join('products','restocked_products.product_id','=','products.id')
                                 ->select('restocked_products.*','products.name','products.units')
                                 ->where('products.stock_id','=', $stock_id)
-                                ->where('restocked_products.quantity','<=',0)//only get items that are in stock
+                                ->where('restocked_products.quantity','<=',0)//only get items that are out of stock
                                 ->get();
                                 
         return Inertia::render('Records/RestockDashboard',[

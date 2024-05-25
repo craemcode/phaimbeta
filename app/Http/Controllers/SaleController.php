@@ -16,9 +16,38 @@ class SaleController extends Controller
         $stock_id = $stock->id;
         $sales = Sale::where('stock_id', $stock_id)->orderBy('created_at','desc')->get();
 
+
+        //calculate total sales.
+        $tot_sales = DB::table('sold_products')
+                        ->select('quantity','selling_price')
+                        ->get();
+        
+
+        $gross_sales = $tot_sales->map(function ($sale){
+             //gross sales
+            $g_s = $sale->quantity*$sale->selling_price;
+            return $g_s;
+        });
+
+
+        //tot_restocks
+        $tot_restocks = DB::table('restocked_products')
+                        ->select('restocked_quantity','buying_price')
+                        ->get();
+
+        $purchases = $tot_restocks->map(function ($purchase){
+                $purchases = $purchase->restocked_quantity*$purchase->buying_price;
+                return $purchases;
+        });
+
+        //do not pass whole arrays. just pass the sum of gross sales and purchases
+        $stats = collect([array_sum($gross_sales->all()),array_sum($purchases->all())]);
+        
+
         return Inertia::render('Records/Sales',
         [
             'sales'=>$sales,
+            'stats'=>$stats,
             'stock'=>$stock->only('id','name')
         ]);
     }
@@ -73,6 +102,7 @@ class SaleController extends Controller
     }
 
     public function show(Stock $stock, Sale $sale){
+        
         $sold_products = DB::table('sold_products')
                             ->join('products','sold_products.product__id','=','products.id')//NB: The foreign key constraint for product id has double underscore.
                             ->join('restocked_products','sold_products.item_id','=','restocked_products.id')
