@@ -1,4 +1,5 @@
 import TransactionsTable from '@/Components/TransactionsTable'
+import ProfitCounter from '@/Components/ProfitCounter';
 import React from 'react'
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import ProductLayout from "@/Layouts/ProductLayout";
@@ -8,6 +9,7 @@ export default function Sales(props) {
     const sales = props.sales
     const stock = props.stock
     const link = 'sale.show'
+    const stats = props.stats
   return (
     <AuthenticatedLayout
     user={props.auth.user}
@@ -20,6 +22,9 @@ export default function Sales(props) {
     >
     <Head title={props.stock.name} />
     <ProductLayout stock={stock} flash={props.flash}>
+                <ProfitCounter stats={stats}>
+
+                </ProfitCounter>
                 <TransactionsTable transactions={sales} stock_id={stock.id} link={link}/>
     </ProductLayout>
     </AuthenticatedLayout>
