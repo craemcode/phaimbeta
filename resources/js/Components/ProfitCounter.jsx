@@ -11,7 +11,7 @@ export default function ProfitCounter({stats}) {
   return (
     <div className='flex justify-center'>
         <div className='bg-white p-5 rounded-md shadow-md flex '>
-            <strong className='bg-blue-700 rounded-md p-4 mr-3 text-white'>Profit Counter</strong>
+            <strong className='bg-gradient-to-r from-blue-700  to-emerald-300 rounded-md p-4 mr-3 text-white'>Profit Counter</strong>
             <br /><br />
             <ul>
                 <li>
@@ -25,7 +25,7 @@ export default function ProfitCounter({stats}) {
                 </li>
             </ul>
         </div>
-
+ 
     </div>
   )
 }
