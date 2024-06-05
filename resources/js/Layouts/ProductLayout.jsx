@@ -40,7 +40,7 @@ const [showFlash,setShowFlash] = useState(true)
                     
                     <SidebarNavLink
                     as='button'
-                    href={/* route('import.products',stock.id) */ null }
+                    href={route('import.products',stock.id)}
                     active={
                         route().current('import.products',{stock:stock.id})
                     }>

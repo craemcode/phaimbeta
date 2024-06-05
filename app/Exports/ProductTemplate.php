@@ -19,8 +19,8 @@ class ProductTemplate implements FromArray,ShouldAutoSize,WithStyles,WithColumnF
     */
     public function array(): array
     {
-        return  array([['Product Name','Product Units','Amount in stock','Buying Price','Selling Price'],
-                        ['Mara Moja - Paracetamol','Tablets - 500mg','100','10','20',]]);
+        return  array([['Product Name','Product Units','Batch Number(exp date)','Amount in stock','Buying Price','Selling Price'],
+                        ['Mara Moja - Paracetamol','Tablets - 500mg','325','100','10','20',]]);
     }
 
     public function styles(Worksheet $sheet)
@@ -50,6 +50,7 @@ class ProductTemplate implements FromArray,ShouldAutoSize,WithStyles,WithColumnF
             'C' => NumberFormat::FORMAT_NUMBER,
             'D' => NumberFormat::FORMAT_NUMBER,
             'E' => NumberFormat::FORMAT_NUMBER,
+            'F' => NumberFormat::FORMAT_NUMBER,
             
            
         ];
@@ -64,6 +65,7 @@ class ProductTemplate implements FromArray,ShouldAutoSize,WithStyles,WithColumnF
                 $event->sheet->getDelegate()->getStyle('C:C')->getNumberFormat()->setFormatCode(NumberFormat::FORMAT_NUMBER);
                 $event->sheet->getDelegate()->getStyle('D:D')->getNumberFormat()->setFormatCode(NumberFormat::FORMAT_NUMBER);
                 $event->sheet->getDelegate()->getStyle('E:E')->getNumberFormat()->setFormatCode(NumberFormat::FORMAT_NUMBER);
+                $event->sheet->getDelegate()->getStyle('F:F')->getNumberFormat()->setFormatCode(NumberFormat::FORMAT_NUMBER);
                 
             },
         ];

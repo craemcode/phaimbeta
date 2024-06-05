@@ -11,7 +11,7 @@ export default function ProfitCounter({stats}) {
   return (
     <div className='flex justify-center'>
         <div className='bg-white p-5 rounded-md shadow-md flex '>
-            <strong className='bg-blue-700 rounded-md p-4 mr-3 text-white'>Profit Counter</strong>
+            <strong className='bg-gradient-to-r from-blue-700  to-emerald-300 rounded-md p-4 mr-3 text-white'>Profit Counter</strong>
             <br /><br />
             <ul>
                 <li>
@@ -21,11 +21,11 @@ export default function ProfitCounter({stats}) {
                     <span className='text-sm'>Purchases: </span> Ksh. <strong className='text-lg'>{total_restocks.toLocaleString()}</strong>
                 </li>
                 <li>
-                    <span className='text-sm'>Gross Profit: </span> Ksh. <strong className='text-lg'>{gross_profit.toLocaleString()}</strong> <span className='text-sm'>({percentage_margin.toPrecision(4)}%)</span>
+                    <span className='text-sm'>Gross Profit: </span> Ksh. <strong className='text-lg'>{gross_profit.toLocaleString()}</strong> (<span className={percentage_margin >= 0 ? 'text-sm text-green-500':'text-sm text-red-500'}>{percentage_margin.toPrecision(4)}%</span>)
                 </li>
             </ul>
         </div>
-
+ 
     </div>
   )
 }

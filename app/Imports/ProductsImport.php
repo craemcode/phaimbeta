@@ -3,11 +3,13 @@
 namespace App\Imports;
 
 use App\Models\Product;
-use Maatwebsite\Excel\Concerns\ToModel;
+use App\Models\Restock;
+use Illuminate\Support\Collection;
+use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\WithStartRow;
 use Maatwebsite\Excel\Concerns\WithValidation;
 
-class ProductsImport implements ToModel,WithStartRow,WithValidation
+class ProductsImport implements ToCollection,WithStartRow,WithValidation
 {
 
     private $stock_id;
@@ -25,21 +27,36 @@ class ProductsImport implements ToModel,WithStartRow,WithValidation
     *
     * @return \Illuminate\Database\Eloquent\Model|null
     */
-    public function model(array $row)
+    public function collection(Collection $rows)
     {
-        if (!isset($row[0])) {
-            return null;
+
+        $restock = Restock::create(['stock_id'=>$this->stock_id]);
+        foreach ($rows as $row){
+            if (!isset($row[0])) {
+                return null;
+            }    
+            // increment row count
+            ++$this->row_count;
+            $product = Product::create([
+                'stock_id' => $this->stock_id,
+                'name' => $row[0],
+                'units' => $row[1],
+                
+            ]);
+
+            
+
+            //create restocked products
+            $product->restocked_product()->create([
+                'restock_id'=>$restock->id,
+                'batch_number'=>$row[2],
+                'restocked_quantity'=>$row[3],
+                'quantity'=>$row[3],
+                'buying_price' => $row[4],
+                'selling_price' => $row[5],
+            ]);
         }
-        // increment row count
-        ++$this->row_count;
-        return new Product([
-            'stock_id' => $this->stock_id,
-            'name' => $row[0],
-            'units' => $row[1],
-            'amount' => $row[2],
-            'buying_price' => $row[3],
-            'selling_price' => $row[4],
-        ]);
+       
     }
     public function startRow(): int
     {
