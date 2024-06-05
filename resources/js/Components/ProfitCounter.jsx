@@ -21,7 +21,7 @@ export default function ProfitCounter({stats}) {
                     <span className='text-sm'>Purchases: </span> Ksh. <strong className='text-lg'>{total_restocks.toLocaleString()}</strong>
                 </li>
                 <li>
-                    <span className='text-sm'>Gross Profit: </span> Ksh. <strong className='text-lg'>{gross_profit.toLocaleString()}</strong> <span className='text-sm'>({percentage_margin.toPrecision(4)}%)</span>
+                    <span className='text-sm'>Gross Profit: </span> Ksh. <strong className='text-lg'>{gross_profit.toLocaleString()}</strong> (<span className={percentage_margin >= 0 ? 'text-sm text-green-500':'text-sm text-red-500'}>{percentage_margin.toPrecision(4)}%</span>)
                 </li>
             </ul>
         </div>
