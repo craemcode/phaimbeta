@@ -38,6 +38,7 @@ class ProductController extends Controller
     {
         $stock_id = $stock->id;
 
+        
         $products = DB::table('restocked_products')
         ->join('products','restocked_products.product_id','=','products.id')
         ->select('restocked_products.*','products.name','products.units')
