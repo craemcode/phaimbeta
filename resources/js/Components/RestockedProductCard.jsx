@@ -33,7 +33,7 @@ export default function RestockedProductCard({restocked_products,restock,user}) 
                 </div>
                 <div className=''>
                     <span className='text-sm'>Ksh.</span>
-                    <span className='font-bold text-lg ml-1'>{product.quantity * product.buying_price}</span>
+                    <span className='font-bold text-lg ml-1'>{(product.quantity * product.buying_price).toLocaleString()}</span>
                 </div>
             </div>
         ))
