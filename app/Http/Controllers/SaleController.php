@@ -19,7 +19,9 @@ class SaleController extends Controller
 
         //calculate total sales.
         $tot_sales = DB::table('sold_products')
-                        ->select('quantity','selling_price')
+                        ->join('sales','sold_products.sales_id','=','sales.id')
+                        ->select('sales.stock_id','sold_products.quantity','sold_products.selling_price')
+                        ->where('stock_id',$stock_id)
                         ->get();
         
 
@@ -32,7 +34,9 @@ class SaleController extends Controller
 
         //tot_restocks
         $tot_restocks = DB::table('restocked_products')
-                        ->select('restocked_quantity','buying_price')
+                        ->join('restocks','restocked_products.restock_id','=','restocks.id')
+                        ->select('restocks.stock_id','restocked_products.restocked_quantity','restocked_products.buying_price')
+                        ->where('stock_id',$stock_id)
                         ->get();
 
         $purchases = $tot_restocks->map(function ($purchase){
