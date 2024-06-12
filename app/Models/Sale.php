@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Sale extends Model
 {
@@ -14,8 +14,8 @@ class Sale extends Model
         'stock_id',
     ];
 
-    public function products(): BelongsToMany
+    public function products(): BelongsTo
     {
-        return $this->belongsTomany(Product::class);
+        return $this->belongsTo(Stock::class);
     }
 }

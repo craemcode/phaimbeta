@@ -102,7 +102,7 @@ class SaleController extends Controller
     }
 
     public function show(Stock $stock, Sale $sale){
-        
+         
         $sold_products = DB::table('sold_products')
                             ->join('products','sold_products.product__id','=','products.id')//NB: The foreign key constraint for product id has double underscore.
                             ->join('restocked_products','sold_products.item_id','=','restocked_products.id')
@@ -110,7 +110,7 @@ class SaleController extends Controller
                             ->select('sold_products.*','products.name','products.units','restocked_products.batch_number')
                             ->where('sales_id',$sale->id)->get();
         
-            
+        //$sold_products = $stock->sold_product()->get();    
         return Inertia::render('Records/SoldProducts',
                 ['sold_products'=>$sold_products,
                 'sale'=>$sale,
