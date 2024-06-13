@@ -36,7 +36,7 @@ export default function CartItem({product,onRemove,updateTotal,setCartItems}) {
         </div>
         <div className='text-sm'>
             <span className='font-bold text-lg'>{product.qty}</span> {product.units} 
-            <span>
+            <div>
                 <input 
                 name='qty'
                 value={parseInt(product.qty)}
@@ -46,9 +46,18 @@ export default function CartItem({product,onRemove,updateTotal,setCartItems}) {
                 placeholder='Quantity to sell'
                 />
                 
-            </span>
+            </div>
+            <div>
+            <span className=''>Selling Price:</span>
+              <input type="text" 
+                name='selling_price'
+                value={parseInt(product.selling_price)}
+                onChange={(e)=>{handle_prop_change(e.target.name,parseInt(e.target.value))}}
+                className=" px-4 text-black-700 bg-inherit h-8 border-0 bg-slate-200 rounded-md focus:border-blue-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40" 
+              />
+            </div>
           </div>
-        <div className=' mt-4'>Ksh. <span className='font-bold text-lg'>{product.selling_price * product.qty}</span></div>
+        <div className=' mt-4'>Ksh. <span className='font-bold text-lg'>{(product.selling_price * product.qty).toLocaleString()}</span></div>
     
 </div>
   )
