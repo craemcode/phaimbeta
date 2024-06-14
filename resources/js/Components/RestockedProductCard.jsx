@@ -4,7 +4,7 @@ export default function RestockedProductCard({restocked_products,restock,user}) 
   
   //date of the restock
   const restock_date = new Date(restock.created_at)
-  const total = restocked_products.reduce((accumulator,current)=>accumulator+current.buying_price*current.quantity,0)
+  const total = restocked_products.reduce((accumulator,current)=>accumulator+current.buying_price*current.restocked_quantity,0)
   
   
   
@@ -34,6 +34,7 @@ export default function RestockedProductCard({restocked_products,restock,user}) 
                 <div className=''>
                     <span className='text-sm'>Ksh.</span>
                     <span className='font-bold text-lg ml-1'>{(product.quantity * product.buying_price).toLocaleString()}</span>
+
                 </div>
             </div>
         ))
