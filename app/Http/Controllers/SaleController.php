@@ -6,6 +6,7 @@ use App\Models\Sale;
 use App\Models\Stock;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 use Inertia\Inertia;
 
 class SaleController extends Controller
@@ -61,6 +62,7 @@ class SaleController extends Controller
         //extract the array to a variable
         $data = $request->all();
         
+        
         //create a new sale
         $sale = new Sale;
         $restock_id =  $data[0]['restock_id'];
@@ -70,8 +72,23 @@ class SaleController extends Controller
         
         $stock_id = $restock->stock_id;
 
+        //validating the nested array from the sales cart.
+        $validator = Validator::make($data,[
+                '*.id'=>'required',
+                '*.product_id'=>'required',
+                '*.quantity'=>'required',
+                '*.qty'=>'required',
+                '*.selling_price'=>'required'
+        ],[
+            '*.qty.required'=>"The quantity to be sold is required. ",
+            '*.selling_price.required'=>"The selling price is required. "
+        ]);
+        //redirect to the cart if the validation fails. 
+        if ($validator->fails()) {
+            return to_route('products.show',$stock_id)->with('error',$validator->errors()->all(':message'));
+       }
+       $data = $validator->validated(); 
 
-        
         $sale->stock_id = $stock_id;
         $sale->save();
         
