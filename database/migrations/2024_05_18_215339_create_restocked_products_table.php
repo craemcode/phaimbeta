@@ -25,8 +25,8 @@ return new class extends Migration
             );
             $table->integer('restocked_quantity');
             $table->integer('quantity');
-            $table->integer('buying_price');
-            $table->integer('selling_price');
+            $table->float('buying_price');
+            $table->float('selling_price');
             $table->string('batch_number');
             $table->timestamps();
         });

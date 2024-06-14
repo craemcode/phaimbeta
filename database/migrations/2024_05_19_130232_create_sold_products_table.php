@@ -26,7 +26,7 @@ return new class extends Migration
                 table:'products',indexName: 'product__id'
             );
             $table->integer('quantity');
-            $table->integer('selling_price');
+            $table->float('selling_price');
             $table->timestamps();
         });
     }

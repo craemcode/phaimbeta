@@ -52,8 +52,8 @@ export default function CartItem({product,onRemove,updateTotal,setCartItems}) {
               <input 
                 type="number" 
                 name='selling_price'
-                value={parseInt(product.selling_price)}
-                onChange={(e)=>{handle_prop_change(e.target.name,parseInt(e.target.value))}}
+                value={parseFloat(product.selling_price)}
+                onChange={(e)=>{handle_prop_change(e.target.name,parseFloat(e.target.value))}}
                 className=" px-4 text-black-700 bg-inherit h-8 border-0 bg-slate-200 rounded-md focus:border-blue-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40" 
                 placeholder="Selling price"
               />

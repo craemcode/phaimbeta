@@ -36,7 +36,7 @@ export default function RestockCartItem({product,onRemove,updateTotal,setCartIte
         </button>
       </div>
       <div className='text-sm'>
-        <span className='font-bold text-lg'>{product.qty}</span> {product.units}
+        <span className='font-bold text-lg'>{product.qty}</span> {product.units}<br></br>
         <span>
           <input
             name='qty'
@@ -52,7 +52,7 @@ export default function RestockCartItem({product,onRemove,updateTotal,setCartIte
           />
         </span>
       </div>
-      <div>
+      <div className='pt-2'>
         <span>
           Batch Number:
           <input
@@ -67,9 +67,9 @@ export default function RestockCartItem({product,onRemove,updateTotal,setCartIte
         </span>
       </div>
       
-      <div>
+      <div className='pt-2'>
         <span>
-          Buying Price:
+          Buying Price:<br></br>
           <input
             name='buying_price'
             value={product.buying_price}
@@ -80,9 +80,9 @@ export default function RestockCartItem({product,onRemove,updateTotal,setCartIte
           />
         </span>
       </div>
-      <div>
+      <div className='py-2'>
         <span>
-          Selling Price:
+          Selling Price:<br></br>
           <input
             name='selling_price'
             value={product.selling_price}
