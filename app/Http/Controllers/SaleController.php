@@ -75,7 +75,8 @@ class SaleController extends Controller
         //validating the nested array from the sales cart.
         $validator = Validator::make($data,[
                 '*.id'=>'required',
-                '*product_id'=>'required',
+                '*.product_id'=>'required',
+                '*.quantity'=>'required',
                 '*.qty'=>'required',
                 '*.selling_price'=>'required'
         ],[
