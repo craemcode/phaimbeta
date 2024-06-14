@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Product;
 use App\Models\Stock;
 use App\Models\Restock;
+use Illuminate\Support\Facades\Validator;
 use Inertia\Inertia;
 
 class RestockController extends Controller
@@ -45,23 +46,37 @@ class RestockController extends Controller
     //function to create a restock
     public function store(Request $request)
     {
-        
-        
-        
-        
+                
         //extract the array to a variable
         $data = $request->all();
-
+       
         //create a new restock
         $restock = new Restock;
 
         //if you make a restock from the items in stock table, there will be trouble because the request will not have a 
         // stock id variable. in that case, we can use the product's table to get the id because a product belongs to a specific stock.
 
-        //the opposite is also true. Use dd(request to understand)
+        //the opposite is also true. Use dd(request) to understand
         if(array_key_exists('stock_id',$data[0])){
             
             $stock_id = $data[0]['stock_id'];
+            $validator = Validator::make($data,[
+                '*.id'=>'required',
+                '*.qty'=>'required',
+                '*.batch_no'=>'required',
+                '*.buying_price'=>'required',
+                '*.selling_price'=>'required'
+            ],[
+                '*.batch_no.required'=>"The batch number (exp) required.",
+                '*.buying_price.required'=>'The buying price is required.',
+                '*.selling_price.required'=>'The selling price is required.'
+            ]); 
+
+            if ($validator->fails()) {
+                return to_route('product.products_in_stock',$stock_id)->with('error',$validator->errors()->all(':message'));
+           }             
+   
+           $data = $validator->validated();
 
             $restock->stock_id = $stock_id;
             $restock->save();
@@ -90,6 +105,26 @@ class RestockController extends Controller
                         ->where('id',$product_id)->first();
         
                 $stock_id = $product->stock_id;
+
+                //validation for the stocked products page
+                $validator = Validator::make($data,[
+                    '*.product_id'=>'required',
+                    '*.qty'=>'required',
+                    '*.batch_no'=>'required',
+                    '*.buying_price'=>'required',
+                    '*.selling_price'=>'required'
+                ],[
+                    '*.batch_no.required'=>"The batch number (exp) required. ",
+                    '*.buying_price.required'=>'The buying price is required. ',
+                    '*.selling_price.required'=>'The selling price is required. '
+                ]); 
+
+                if ($validator->fails()) {
+                    return to_route('product.products_in_stock',$stock_id)->with('error',$validator->errors()->all(':message'));
+               }             
+       
+               $data = $validator->validated();
+
                 $restock->stock_id = $stock_id;
                 $restock->save();
 

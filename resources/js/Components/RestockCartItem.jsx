@@ -6,6 +6,12 @@ export default function RestockCartItem({product,onRemove,updateTotal,setCartIte
     updateTotal()
 
     const handle_prop_change = (propertyName,newValue)=>{
+      //ensure that buying price and selling price are always positive and non zero. 
+      if(propertyName == "buying_price" || propertyName == "selling_price" && newValue <= 0){
+        newValue = 1
+      }
+      
+     
                
         setCartItems(oldItems => [...oldItems.map(item => item.id === product.id ?{...item,[propertyName]:newValue} :item)])
       }
@@ -56,6 +62,7 @@ export default function RestockCartItem({product,onRemove,updateTotal,setCartIte
             className=" px-4  text-black-700  bg-inherit h-8 border-0 bg-slate-200 rounded-md focus:border-blue-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
             type="number"
             placeholder='Batch Number'
+            
           />
         </span>
       </div>
