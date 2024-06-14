@@ -8,11 +8,11 @@ export default function CartItem({product,onRemove,updateTotal,setCartItems}) {
     
     const handle_prop_change = (propertyName,newValue)=>{
       
-      if(newValue <= 0){
+      if(propertyName == "qty" && newValue <= 0 || propertyName == "selling_price" && newValue <= 0){
         newValue = 1
       }
       
-      if(newValue > product.quantity){
+      if(propertyName == "qty" && newValue > product.quantity){
         newValue = product.quantity
       }
         
@@ -47,13 +47,15 @@ export default function CartItem({product,onRemove,updateTotal,setCartItems}) {
                 />
                 
             </div>
-            <div>
-            <span className=''>Selling Price:</span>
-              <input type="text" 
+            <div className="py-2">
+            <span className=''>at </span>
+              <input 
+                type="number" 
                 name='selling_price'
                 value={parseInt(product.selling_price)}
                 onChange={(e)=>{handle_prop_change(e.target.name,parseInt(e.target.value))}}
                 className=" px-4 text-black-700 bg-inherit h-8 border-0 bg-slate-200 rounded-md focus:border-blue-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40" 
+                placeholder="Selling price"
               />
             </div>
           </div>

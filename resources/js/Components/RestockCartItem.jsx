@@ -7,7 +7,7 @@ export default function RestockCartItem({product,onRemove,updateTotal,setCartIte
 
     const handle_prop_change = (propertyName,newValue)=>{
       //ensure that buying price and selling price are always positive and non zero. 
-      if(propertyName == "buying_price" || propertyName == "selling_price" && newValue <= 0){
+      if(propertyName == "qty" && newValue <= 0 || propertyName == "buying_price" && newValue <= 0 || propertyName == "selling_price" && newValue <= 0){
         newValue = 1
       }
       

@@ -67,9 +67,10 @@ class RestockController extends Controller
                 '*.buying_price'=>'required',
                 '*.selling_price'=>'required'
             ],[
-                '*.batch_no.required'=>"The batch number (exp) required.",
-                '*.buying_price.required'=>'The buying price is required.',
-                '*.selling_price.required'=>'The selling price is required.'
+                '*.qty.required'=>"The quantity to be restocked is required. ",
+                '*.batch_no.required'=>"The batch number (exp) required. ",
+                '*.buying_price.required'=>'The buying price is required. ',
+                '*.selling_price.required'=>'The selling price is required. '
             ]); 
 
             if ($validator->fails()) {
@@ -114,6 +115,7 @@ class RestockController extends Controller
                     '*.buying_price'=>'required',
                     '*.selling_price'=>'required'
                 ],[
+                    '*.qty.required'=>"The quantity to be restocked is required. ",
                     '*.batch_no.required'=>"The batch number (exp) required. ",
                     '*.buying_price.required'=>'The buying price is required. ',
                     '*.selling_price.required'=>'The selling price is required. '
