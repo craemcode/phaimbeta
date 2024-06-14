@@ -18,7 +18,7 @@ export default function SoldProducts(props) {
 >
     <Head title={props.stock.name} />
     <ProductLayout stock={props.stock} flash={props.flash} >
-    <div className=" h-screen flex justify-evenly bg-[url('/img/protruding-squares.svg')]">
+    <div className=" h-screen flex justify-evenly bg-gray-100">
         <div className=''>
         <ProductCard sold_products={props.sold_products} user={props.auth.user} sale={props.sale} stock_id={props.stock.id}/>
         </div>

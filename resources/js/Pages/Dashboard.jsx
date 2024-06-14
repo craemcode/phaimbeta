@@ -1,5 +1,5 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import Footer from '@/Components/Footer';
+
 
 import { Head,Link, usePage } from '@inertiajs/react';
 
@@ -17,7 +17,7 @@ export default function Dashboard(props) {
             }
         >
             <Head title="Dashboard" />
-            <div className="min-h-screen bg-[url('/img/hollowed-boxes.svg')] p-4">
+            <div className="min-h-screen bg-gray-100 p-4">
 
             
             {
@@ -52,21 +52,28 @@ export default function Dashboard(props) {
             }
 
             <div className="max-w-7xl py-12 mx-auto sm:px-6 lg:px-12 flex flex-col items-center ">
-                <div className="bg-white w-1/2 overflow-hidden shadow-sm sm:rounded-lg">
-                    <div className="p-6 bg-white border-b border-gray-200">
+                <div className="bg-white w-1/2 overflow-hidden shadow-md sm:rounded-lg">
+                    <div className="p-6 bg-white flex flex-col justify-center border-b border-gray-200">
                        A stock can also be called a clinic. It is the collection of all products in your pharmacy.
                         <p className='font-bold'>Press the button below to create a new clinic/stock</p>
                         <br />
                         <Link
                             as="button"
                             href={route("stocks.create")}
-                            className="shadow bg-blue-500 hover:bg-teal-700 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 mr-5 rounded"
+                            className="shadow bg-black hover:bg-teal-700 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 mr-5 rounded"
                         >
                             Create Stock
                         </Link>
                         
                     </div>
+                    <div className='flex justify-center'>
+                            <div className='text-lg font-bold'>
+                            Existing Stocks
+                            </div>
+                            
+                    </div>
                     <div className=" bg-white flex  md:flex-row justify-around px-2 rounded-md py-4 flex-wrap">
+                        
                         {stocks.map(({ name, id, location }) => (
                             
                         <Link
@@ -96,9 +103,7 @@ export default function Dashboard(props) {
                 </div>
             </div>
             </div>
-            <Footer>
-
-            </Footer>
+            
         </AuthenticatedLayout>
     );
 }

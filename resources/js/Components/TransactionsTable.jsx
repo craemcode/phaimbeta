@@ -6,28 +6,28 @@ import PaginationTable from "./PaginationTable";
 
 export default function TransactionsTable({transactions,stock_id,link}) {
     const data = useMemo(()=>transactions,transactions)
-    
+   
     
     //format the dates
-    transactions.forEach((transaction)=>(
-         transaction.created_at = new Date(transaction.created_at).toDateString()
-         
-    ))
-    
-    
+    transactions.forEach((transaction)=>{
+        const sell_date = new Date(transaction.created_at)
+        transaction.created_at = sell_date.toDateString()+" - "+sell_date.toLocaleTimeString()
+        })
     
     
     
     
     const columns = useMemo(()=>[
       {
-          Header: 'Transaction ID',
+          Header: 'Transaction',
           accessor: 'id',
+          width: 80
       },
          
       {
           Header: 'Date of Transaction',
           accessor: 'created_at',
+          width: 220
       },
   ], transactions)
   
@@ -59,7 +59,7 @@ export default function TransactionsTable({transactions,stock_id,link}) {
   
   
     return (
-    <div className="mx-auto bg-white flex flex-col items-center justify-center m-2 rounded-lg relative">
+    <div className="mx-auto bg-white flex flex-col items-center justify-center m-2 shadow-md rounded-lg relative">
     <GlobalFilter
     preGlobalFilteredRows={preGlobalFilteredRows}
     globalFilter={globalFilter}

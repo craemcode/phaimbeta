@@ -68,7 +68,7 @@ export default function RestockDashboard(props) {
                 <div className="flex items-start justify-between">
 
                     <div className="pt-5 w-3/4 p-6 ">
-                        <div className='flex  justify-between px-4 py-1'>
+                        <div className='flex  justify-between px-4 py-4'>
                             <Link
                                 href={route("products.show_products_only",stock.id)}
                                 as="button"
@@ -113,7 +113,7 @@ export default function RestockDashboard(props) {
                                 </p>
                         }
                     </div>
-                    <div className=" bg-gray-100 shadow-md border rounded-md self-stretch mx-4 px-4 w-1/4">
+                    <div className=" bg-white shadow-md border rounded-md self-stretch mx-4 px-4 w-1/4">
                         <RestockCart onRemove={onRemove} cartItems={cartItems} setCartItems={setCartItems}>
 
                         </RestockCart>

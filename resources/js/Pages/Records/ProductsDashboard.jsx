@@ -67,7 +67,7 @@ export default function ProductsDashboard(props) {
                         </p>
                         }
                     </div>
-                    <div className=" bg-gray-100 shadow-md border rounded-md self-stretch mx-4 px-4 w-1/4">
+                    <div className=" bg-white shadow-md border rounded-md self-stretch mx-4 px-4 w-1/4">
                         <SalesCart onRemove={onRemove} cartItems = {cartItems} setCartItems={setCartItems}>
 
                         </SalesCart>

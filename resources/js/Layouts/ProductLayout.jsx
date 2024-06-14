@@ -12,7 +12,7 @@ const [showFlash,setShowFlash] = useState(true)
     return (
 
 
-        <div className="w-full min-h-screen flex-initial flex  flex-col md:flex-row bg-[url('/img/background.svg')]">
+        <div className="w-full min-h-screen flex-initial flex  flex-col md:flex-row bg-gray-100">
             <nav className="bg-white hidden md:flex-col md:flex md:w-1/5 sticky top-0 h-screen transition-all">
                 <div className="mt-3 w-full  flex justify-center">
                     <Link
@@ -27,7 +27,7 @@ const [showFlash,setShowFlash] = useState(true)
 
 
                 
-                <div className='mt-2  w-full'>
+                <div className='mt-2 w-full'>
 
 
                     <h4 className="text-yellow-800 p-2">Add Products</h4>

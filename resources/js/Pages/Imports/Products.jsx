@@ -32,7 +32,7 @@ export default function Products(props) {
             <Head title={stock.name} />
             <ProductLayout stock={stock} flash={props.flash}>
 
-                <div className="min-h-screen flex flex-col items-center pt-6 sm:pt-0 bg-[url('/img/background.svg')]">
+                <div className="min-h-screen flex flex-col items-center pt-6 sm:pt-0 bg-gray-100">
 
                     <div className="flex flex-col justify-center items-center max-w-lg shadow bg-white mt-4 px-10 py-8 mb-12 text-gray-600 rounded-lg">
                         <h4
